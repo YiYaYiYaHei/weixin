@@ -66,6 +66,9 @@
 .dflex {
 	@include flex(row, space-between, center);
 }
+.flex-shrink {
+	flex-shrink: 0;
+}
 .dnone {
   display: none;
 }
@@ -87,6 +90,9 @@
 }
 .box-sizing {
 	box-sizing: border-box!important;
+}
+.oh {
+	overflow: hidden;
 }
 
 // width、height
@@ -112,6 +118,9 @@
 }
 .mg20 {
 	margin: 20rpx;
+}
+.mgr20 {
+	margin-right: 20rpx;
 }
 .mgt50 {
 	margin-top: 50rpx;

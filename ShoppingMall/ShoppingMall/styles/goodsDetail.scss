@@ -261,23 +261,6 @@
 		&.num-box {
 			@include flex(row, space-between, null);
 		}
-		/deep/.uni-numbox {
-			width: 90px;
-			height: 20px;
-		}
-		/deep/.uni-cursor-point {
-			border: none!important;
-			background-color: transparent!important;
-			width: 30px;
-			height: 20px;
-		}
-		/deep/.uni-numbox__value {
-			width: 30px;
-			height: 20px;
-			border: none!important;
-			background-color: $uni-text-color-placeholder-light;
-			font-size: 26rpx;
-		}
 	}
 }
 // 商品属性样式---end---

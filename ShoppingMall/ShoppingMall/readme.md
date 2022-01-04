@@ -129,3 +129,8 @@
 
 > v-if
 1. 使用v-if直接判断数据类型时，会报错，建议$tools.getDataType(value, String);
+---
+
+> uni-number-box
+1. 在循环体中动态双向绑定数据不能使用v-model（会拿不到初始值）需要使用:value进行双向绑定，正确示例如下：
+<uni-number-box :min="1" :value="item.goodsNum"></uni-number-box>

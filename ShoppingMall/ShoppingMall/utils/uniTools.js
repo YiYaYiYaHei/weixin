@@ -232,7 +232,7 @@ const saveFile = (tempFilePath, successCb, errorCb) => {
  * @param {Object} _this - 组件this
  * @param {Function} className - 选择器：.box，  #box，  .box>a，   .box a，  .box>>>a，.box,a
  * @param {Function} isAll - 是否选择获取所有节点
- * @example let result = await this.$refs.baseHeaderLayout.getDom('#baseContentScrollBox', false);
+ * @example let result = await this.$uniTools.getDom(this, `#operatorBtn${index}`);
  */
 const getDom = (_this, className, isAll = true) => {
 	const query = uni.createSelectorQuery().in(_this);

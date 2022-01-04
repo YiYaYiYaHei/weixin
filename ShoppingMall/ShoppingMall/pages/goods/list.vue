@@ -13,8 +13,8 @@
 						<view class="list-item-body-box">
 							<view class="list-item-body-title">{{item.goodsDescription}}</view>
 							<view class="list-item-body-note">
-								<text data-status-text="error" class="ellipsis dinlineb">￥{{item.goodsPrice}}</text>
-								<text data-status-text="disabled" class="ellipsis fs-sm dinlineb">￥{{item.goodsOriginPrice}}</text>
+								<text data-status-text="error" class="goods-price ellipsis dinlineb">￥{{item.goodsPrice}}</text>
+								<text data-status-text="disabled" class="goods-o-price ellipsis fs-sm dinlineb">￥{{item.goodsOriginPrice}}</text>
 							</view>
 						</view>
 					</template>
