@@ -96,8 +96,7 @@ export default {
 					// 若有用户权限操作，存储完跳转至对应页面即可;
 					uni.switchTab({url: '/pages/home/index'});
 					// 获取购物车数量（先跳转页面，再修改tabBar右上角文本，最大9999，超过会显示...）
-					const num = await this.requestCarNum();
-					uni.setTabBarBadge({index: 2, text: num + ''});
+					this.shoppingCarNum();
 				} else {
 					this.$uniTools.showToast({title: result.message});
 				}

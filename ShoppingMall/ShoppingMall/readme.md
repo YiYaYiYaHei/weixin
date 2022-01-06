@@ -134,3 +134,7 @@
 > uni-number-box
 1. 在循环体中动态双向绑定数据不能使用v-model（会拿不到初始值）需要使用:value进行双向绑定，正确示例如下：
 <uni-number-box :min="1" :value="item.goodsNum"></uni-number-box>
+---
+
+> switchTab
+1. uni.switchTab({url: '/pages/home/index'}); 跳转后无法初始化页面: [uni-app开发小程序-使用uni.switchTab跳转后页面不刷新的问题](https://www.cnblogs.com/cap-rq/p/11120438.html)

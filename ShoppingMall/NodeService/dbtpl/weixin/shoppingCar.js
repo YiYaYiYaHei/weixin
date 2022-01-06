@@ -100,17 +100,22 @@
     }),
     // 购物车 - 删除
     app.delete('/wx/shoppingCar/delete/:carId', async (req, res) => {
-      console.log('================ /wx/shoppingCar/delete/:id start================');
+      console.log('================ /wx/shoppingCar/delete/:carId start================');
 
+      const params = req.params;
+      if (!params.carId) {
+        common.resSend({status: 201, message: '缺少参数carId'});
+        return;
+      }
       // 删除
-      await dbFunc.deleteFunc('shoppingCar', `carId=${req.query.carId}`).catch(e => {
+      await dbFunc.deleteFunc('shoppingCar', `carId=${req.params.carId}`).catch(e => {
         common.resSend(res, e);
         return;
       });
       common.resSend(res, {message: '删除成功'});
 
 
-      console.log('================ /wx/shoppingCar/delete/:id end================');
+      console.log('================ /wx/shoppingCar/delete/:carId end================');
     });
     // 查询购物车数量
     app.get('/wx/shoppingCar/queryNum', async (req, res) => {
@@ -136,5 +141,23 @@
       }
 
       console.log('================ /wx/shoppingCar/queryNum end================');
-    })
+    });
+    // 购物车 - 编辑
+    app.put('/wx/shoppingCar/update', async (req, res) => {
+      console.log('================ /wx/shoppingCar/update start================');
+      const params = req.body;
+      if (!params.carId) {
+        common.resSend({status: 201, message: '缺少参数carId'});
+        return;
+      }
+
+      const where = `carId=${params.carId}`;
+      const result = await dbFunc.updateFunc('shoppingCar', {data: {goodsNum: params.goodsNum, goodsColor: params.goodsColor, goodsSize: params.goodsSize}, where}).catch(e => {
+        common.resSend(res, e);
+        return;
+      });
+      common.resSend(res, result);
+
+      console.log('================ /wx/shoppingCar/update end================');
+    });
  }

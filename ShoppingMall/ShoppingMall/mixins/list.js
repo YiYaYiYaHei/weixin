@@ -1,11 +1,11 @@
 /*********************************************************************
  * 列表方法
- * 
+ *
  * 注意：
  * 1、上拉加载，需设置requestListParams参数，onLoad生命周期中需要手动调用getList，调用getList方法前需设置请求地址和参数
  * 2、需在onReachBottom生命周期，调用reachBottomEvt方法
  *********************************************************************/
- 
+
  export default {
 	data() {
 		return {
@@ -39,7 +39,9 @@
 				},
 				// 其他状态：当otherStatus有值时，表示接口请求失败otherStatus=error / 数据为空otherStatus=empty
 				otherStatus: ''
-			}
+			},
+			// 页面滚动高
+			pageScrollTop: 0
 		}
 	},
 	onPullDownRefresh() {
@@ -49,6 +51,10 @@
 	onReachBottom() {
 		// 页面滚动到底部的事件（不是scroll-view滚到底），常用于下拉下一页数据。
 		this.reachBottomEvt();
+	},
+	// 页面滚动
+	onPageScroll(e) {
+		this.pageScrollTop = e.scrollTop;
 	},
 	methods: {
 		// 页面滚动到底部的事件--在onReachBottom生命周期调用
@@ -67,7 +73,12 @@
 		isLoadMore() {
 			return (this.pagingData.current - 1) * this.pagingData.size >= this.pagingData.total;
 		},
-		// 获取列表数据--调用getList方法前需设置请求地址(requestListParams.requestApi)和参数(requestListParams.params 对分页参数已做自动添加)
+		/**
+		 * 获取列表数据
+		 * 调用getList方法前需设置请求地址(requestListParams.requestApi)和参数(requestListParams.params 对分页参数已做自动添加)
+		 * @param {Function | Null} callback - 回调函数
+		 *
+		 */
 		async getList(callback) {
 			// 若为最后一页,则不发请求
 			if (!!this.listData.length && this.isLoadMore()) {
@@ -81,7 +92,7 @@
 			if (result.status === 200) {
 				this.listData = this.listData.concat((result.data || {rows: []}).rows);
 				this.pagingData.total = (result.data || {total: []}).total;
-				
+
 				// 设置加载更多的状态--防止上拉过快，最后一页“加载更多”的提示语不正确(解决滑到最后一页的时候，没有触发onReachBottom，需要手动下滑在上拉的问题)
 				this.loadMoreData.status = this.pagingData.current === Math.ceil(this.pagingData.total / this.pagingData.size) ? 'noMore' : 'more';
 				this.loadMoreData.otherStatus = this.pagingData.total ? '' : 'empty';
@@ -91,15 +102,38 @@
 			}
 			callback && callback();
 		},
-		// 按条件搜索时调用, type=pullDownRefresh表示下拉刷新操作
+		/**
+		 * 按条件搜索时调用   查询、删除、新增时调用
+		 * @param {String} type - 操作类型，type=pullDownRefresh表示下拉刷新操作
+		 */
 		refreshList(type) {
 			this.pagingData.current = 1;
 			this.pagingData.total = 0;
 			this.listData = [];
-			setTimeout(() => {
+			/* setTimeout(() => {
 				(type === 'pullDownRefresh') && this.getList(() => uni.stopPullDownRefresh());
 				(type !== 'pullDownRefresh') && this.getList();
-			}, 800);
+			}, 800); */
+			(type === 'pullDownRefresh') && this.getList(() => uni.stopPullDownRefresh());
+			(type !== 'pullDownRefresh') && this.getList();
+		},
+		// 记录页面滚动位置   https://blog.csdn.net/wzard/article/details/116267997
+		saveScrollTop() {
+			uni.pageScrollTo({
+				//距离页面顶部的距离
+				scrollTop: this.pageScrollTop,
+				duration: 0
+			});
+		},
+		/** 
+		 * 删除列表某一项 - 删除成功后停留在滚动位置时使用
+		 * @param {String} key - 键名
+		 * @param {String} value - 键值
+		 * @param {Array} list - 数据
+		 */
+		deleteListItem(key, value, list = this.listData) {
+			const index = list.findIndex(it => it[key] === value);
+			index > -1 && list.splice(index, 1);
 		}
 	}
  }

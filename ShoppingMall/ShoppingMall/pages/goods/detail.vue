@@ -335,7 +335,7 @@ export default {
 			this.capsuleSize = uni.getMenuButtonBoundingClientRect();
 			this.capsuleSize.leftValue = uni.getSystemInfoSync().windowWidth - this.capsuleSize.right;
 			// 页面加载--获取路由参数
-			this.goodsId = params.goodsId;
+			this.goodsId = (params || {goodsId: ''}).goodsId;
 			this.getGoodsDetail();
 			this.getCarNum();
 		},
@@ -484,7 +484,15 @@ export default {
 			footerOperatorEvt(item) {
 				switch(item.type) {
 					case 'car':
-						uni.switchTab({url: '/pages/shoppingCard/index'});
+						uni.switchTab({
+							url: '/pages/shoppingCard/index',
+							success: (e) => {
+								// 手动调用购物车页面的初始化查询 - 解决switchTab切换tabBar后，页面不会初始化
+								var page = getCurrentPages().pop();
+								if (page == undefined || page == null) return;
+								page.onLoad();
+							}
+						});
 					  break;
 				}
 			}

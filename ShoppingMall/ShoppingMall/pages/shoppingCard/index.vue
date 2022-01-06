@@ -4,9 +4,8 @@
 			<scroll-view class="wfull">
 				<view v-for="(item, i) in listData" 
 						  :key="i"
-						  @touchstart="(event) => touchStart(event, i)"
-						  @touchmove="(event) => touchEvt(event, i)"
-						  @touchend="(event) => touchEnd(event, i)"
+						  @touchstart.prevent="(event) => touchStart(event, i)"
+						  @touchmove.prevent="(event) => touchMove(event, i)"
 							class="list-item-box-warpper box-sizing">
 					<view class="list-item-box box-sizing transition" :style="{left: `${item.left}px`}">
 						<view class="list-item-header-box flex-shrink" @click="checkGoods(item, i)">
@@ -27,10 +26,10 @@
 									<text data-status-text="disabled" class="goods-o-price ellipsis fs-sm dinlineb">￥{{item.goodsOriginPrice}}</text>
 								</view>
 								<!-- 数量 -->
-								<uni-number-box :min="1" :value="item.goodsNum" @change="item.goodsNum=$event;updateGoodsProperty(item)"></uni-number-box>
+								<uni-number-box :min="1" :value="item.goodsNum" @change="updateGoodsProperty($event, item)"></uni-number-box>
 							</view>
 						</view>
-						<view class="list-right flex-shrink">删除</view>
+						<view class="list-right flex-shrink" @click="deleteCar(item)">删除</view>
 					</view>
 				</view>
 			</scroll-view>
@@ -40,51 +39,62 @@
 
 <script>
 import list from '@/mixins/list.js';
+import {updateShoppingCar, getShoppingCarNum} from '@/mixins/partMinxins.js';
 
 export default {
-	mixins: [list],
+	mixins: [list, updateShoppingCar, getShoppingCarNum],
 	data() {
 		return {
 			dragData: {}
 		}
 	},
-	onLoad(params) {
-		// 页面加载--获取路由参数
+	async onLoad(params) {
+		// 页面加载-设置列表接口口
 		this.requestListParams.requestApi = this.$apis.login.shoppingCarList;
-		this.getListData();
+		// 刷新列表
+		this.refreshList();
+		this.shoppingCarNum();
 	},
 	methods: {
-		async getListData() {
-			await this.getList();
+		async getListData(isRefresh = false) {
+			await this.getList(isRefresh);
 			this.listData.map(it => it.check = false);
-			console.log(this.listData)
 		},
 		// 商品勾选
 		checkGoods(item, index) {
 			this.$set(this.listData, index, Object.assign(item, {check: !item.check}))
 		},
 		// 修改商品属性
-		updateGoodsProperty(item) {
-			console.log(item);
+		async updateGoodsProperty(val, item) {
+			if (!item) return;
+			item.goodsNum = val;
+			this.updateShoppingCarEvt(item);
 		},
+		// 左滑开始 - 设置开始位置
 		touchStart(event, index) {
-			console.log('开始', event);
 			this.$set(this.listData, index, Object.assign(this.listData[index], {startLeft: event.touches[0].clientX}));
 		},
-		touchEvt(event, index) {
+		// 左滑移动 - 计算left: (开始位置 - 移动位置) < 0 ？ 左滑 : 右滑
+		touchMove(event, index) {
+			// 删除按钮宽
 			const btnWidth = 50;
 			const item = this.listData[index];
-			const _left = -(item.startLeft - event.touches[0].clientX);
-			console.log(_left);
-			const initVal = _left > 0 ? 15 : -btnWidth;
-			const left = Math.abs(_left) > btnWidth ? initVal : _left;
+			const _left = item.startLeft - event.touches[0].clientX;
+			// 设置left值: 为了防止第一次直接右滑时出现抖动情况，因此 如果 _left为负，表示是右滑，此时直接为15；如果_left为正，表示是左滑，此时需要判断左滑的距离是否超过btnWidth。
+			const left = _left < 0 ? 15 : _left > btnWidth ? -btnWidth : -_left;
 			this.$set(this.listData, index, Object.assign(this.listData[index], {left}));
 		},
-		touchMove(event, index) {
-			console.log('移动', event);
-		},
-		touchEnd(event, index) {
-			console.log('结束', event);
+		// 删除购物车商品
+		async deleteCar(item) {
+			const result = await this.$apis.login.shoppingCarDelete({carId: item.carId});
+			if (result.status === 200) {
+				// 手动删除列表某一项 - 为了保证删除成功后，列表滚动位置不改变
+				this.deleteListItem('carId', item.carId);
+				this.shoppingCarNum();
+				this.$uniTools.showToast({title: '商品删除成功'});
+			} else {
+				this.$uniTools.showToast({title: '商品删除失败'});
+			}
 		}
 	}
 }

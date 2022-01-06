@@ -20,5 +20,7 @@ export default {
 	
 	shoppingCarAdd: params => ajax.post('/wx/shoppingCar/add', params),
 	shoppingCarGetNum: () => ajax.get('/wx/shoppingCar/queryNum'),
-	shoppingCarList: (params) => ajax.post('/wx/shoppingCar/query', params)
+	shoppingCarList: params => ajax.post('/wx/shoppingCar/query', params),
+	shoppingCarUpdate: params => ajax.put('/wx/shoppingCar/update', params, {showLoading: false}),
+	shoppingCarDelete: params => ajax.del(`/wx/shoppingCar/delete/${params.carId}`),
 };
