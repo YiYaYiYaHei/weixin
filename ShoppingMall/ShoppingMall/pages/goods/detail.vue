@@ -68,7 +68,7 @@
 						</view>
 						
 						<!-- 查看 -->
-						<view class="wfull volumn-box mgb20" @click="timeStampEvt(seeData)">
+						<view class="wfull volumn-box mgb20" @click="seeData.nodeId=$tools.getTimeStamp()">
 							<text class="return-volumn">满额返卷</text>
 							<view class="see">
 								查看
@@ -89,12 +89,12 @@
 				
 				<!-- 已选/送至 -->
 				<view class="box-radius goods-choose-box">
-					<view class="choose-goods" @click="timeStampEvt(goodsPropertyData)">
+					<view class="choose-goods" @click="goodsPropertyData.nodeId=$tools.getTimeStamp();">
 						<text class="left dinlineb">已选</text>
 						<text class="center dinlineb">{{userChooseData.color}}，{{userChooseData.size}}</text>
 						<uni-icons type="more-filled" class="right dinlineb"></uni-icons>
 					</view>
-					<view class="choose-goods address-box" @click="timeStampEvt(addressData)">
+					<view class="choose-goods address-box" @click="addressData.nodeId=$tools.getTimeStamp();">
 						<text class="left dinlineb">送至</text>
 						<text class="center dinlineb address">{{addressData.data}}</text>
 						<uni-icons type="more-filled" class="right dinlineb"></uni-icons>
@@ -169,7 +169,7 @@
 				<text v-if="item.type === 'car'" class="num">{{carNum}}</text>
 				<view>{{item.label}}</view>
 			</view>
-			<add-car class="footet-btn" ref="addCar" @addCarEvt="timeStampEvt(goodsPropertyData)" @addCarSuccessEvt="goodsPropertyData.nodeId=0"></add-car>
+			<add-car class="footet-btn" ref="addCar" @addCarEvt="goodsPropertyData.nodeId=$tools.getTimeStamp();" @addCarSuccessEvt="goodsPropertyData.nodeId=0"></add-car>
 		</view>
 		
 		
@@ -205,52 +205,9 @@
 		</base-popup-dialog>
 		
 		<!-- 商品属性、已选 -->
-		<base-popup-dialog :nodeId="goodsPropertyData.nodeId"
-											 footerType="custom"
-											 type="bottom"
-											 :maskClick="true"
-											 :showClose="true"
-											 class="goods-property-dialog-container">
-			<scroll-view scroll-x="true">
-				<view class="goods-property-title-box">
-					<view class="img" @click="previewImg(0, goodsDetailData.propertyData.goodsImg)">
-						<image :src="goodsDetailData.propertyData.goodsImg" mode="heightFix" class="full"></image>
-					</view>
-					<view class="descript-box">
-						<view class="price">￥<text>{{goodsDetailData.propertyData.priceInt}}</text>.{{goodsDetailData.propertyData.priceFloat}}</view>
-						<view class="descript">
-							<text data-status-text="disabled">已选</text>
-							{{userChooseData.color}}，{{userChooseData.size}}
-						</view>
-					</view>
-				</view>
-				<view class="property-box">
-					<text class="dblock title">颜色</text>
-					<view class="property-list">
-						<text v-for="item, i in goodsDetailData.propertyData.color" 
-						     :key="item" 
-								 @click="userChooseData.color=item"
-								 :class="{'active': userChooseData.color === item}">{{item}}</text>
-					</view>
-				</view>
-				<view class="property-box">
-					<text class="dblock title">尺寸</text>
-					<view class="property-list">
-						<text v-for="item, i in goodsDetailData.propertyData.size" 
-						     :key="item" 
-								 @click="userChooseData.size=item"
-								 :class="{'active': userChooseData.size === item}">{{item}}</text>
-					</view>
-				</view>
-				<view class="property-box num-box">
-					<text class="dblock title">数量</text>
-					<uni-number-box :min="1" v-model="userChooseData.num"></uni-number-box>
-				</view>
-			</scroll-view>
-			<template #footer>
-				<add-car ref="popupAddCar" @addCarEvt="addCarEvt" @addCarSuccessEvt="goodsPropertyData.nodeId=0;getCarNum()"></add-car>
-			</template>
-		</base-popup-dialog>
+		<goods-property ref="goodsProperty" :isShow="goodsPropertyData.nodeId" :goodsProperty="goodsDetailData.propertyData" :userChooseData.sync="userChooseData">
+			<add-car ref="popupAddCar" @addCarEvt="addCarEvt" @addCarSuccessEvt="addCarSuccessEvt"></add-car>
+		</goods-property>
 		
 		<!-- 送至 -->
 		<base-popup-dialog :nodeId="addressData.nodeId"
@@ -262,17 +219,16 @@
 											 class="see-dialog-container">
 			<base-form-radio-group v-model="addressData.data" :options="addressList"></base-form-radio-group>
 		</base-popup-dialog>
-		
-		
 	</base-header-layout>
 </template>
 
 <script>
 import AddCar from './comp/AddCar.vue';
+import GoodsProperty from './comp/GoodsProperty.vue';
 import {getShoppingCarNum} from '@/mixins/partMinxins.js';
 
 export default {
-		components: {AddCar},
+		components: {AddCar, GoodsProperty},
 		mixins: [getShoppingCarNum],
 		data() {
 			return {
@@ -369,6 +325,10 @@ export default {
 				uni.switchTab({url: '/pages/home/index'});
 			},
 			async getGoodsDetail() {
+				if (!this.goodsId) {
+					this.$uniTools.navigateBack();
+					return;
+				}
 				let result = await this.$apis.login.homeGetGoodsDeatil({goodsId: this.goodsId});
 				if (result.status === 200) {
 					this.goodsDetailData.videoUrl = 'https://cloud.video.taobao.com/play/u/746251873/p/1/e/6/t/1/311306325407.mp4';
@@ -464,11 +424,9 @@ export default {
 					icon: 'success'
 				});
 			},
-			timeStampEvt(data) {
-				data.nodeId = +new Date();
-			},
 			// 加入购物车
 			addCarEvt() {
+				// const userChooseData = this.$refs.goodsProperty.userChooseData;
 				const params = {
 					goodsId: this.goodsId * 1,
 					goodsSize: this.userChooseData.size,
@@ -476,6 +434,16 @@ export default {
 					goodsNum: this.userChooseData.num * 1
 				}
 				this.$refs.popupAddCar.shoppingCardEvt(params);
+			},
+			addCarSuccessEvt() {
+				// 修改已选属性值
+				const userChooseData = this.$refs.goodsProperty.userChooseData;
+				this.userChooseData.color = this.userChooseData.color;
+				this.userChooseData.size = this.userChooseData.size;
+				// 关闭弹框
+				this.goodsPropertyData.nodeId = 0;
+				// 重新获取购物车数量
+				this.getCarNum();
 			},
 			async getCarNum() {
 				this.carNum = await this.requestCarNum();

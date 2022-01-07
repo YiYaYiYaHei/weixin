@@ -90,7 +90,9 @@
 		"path": "pages/shoppingCard/index",
 		"style": {
 			"navigationBarTitleText": "购物车",
-			"navigationStyle": "custom"
+			"navigationStyle": "custom",
+			"onReachBottomDistance": 50,   // 页面上拉触底事件触发时距页面底部距离
+			"enablePullDownRefresh": true  // 开启下拉刷新
 		}
 	}, {
 		"path": "pages/my/index",

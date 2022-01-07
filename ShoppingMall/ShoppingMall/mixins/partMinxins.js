@@ -40,13 +40,17 @@ export const getShoppingCarNum = {
 export const updateShoppingCar = {
 	methods: {
 		// 修改购物车商品信息 - 返回是否修改成功
-		async updateShoppingCarEvt(params) {
+		async updateShoppingCarEvt(params, cb) {
 			let isSuccess = false;
 			const result = await this.$apis.login.shoppingCarUpdate(params);
 			isSuccess = result.status === 200;
-			!isSuccess && this.$uniTools.showToast({title: '修改失败'});
-			// 设置购物车数量
-			this.shoppingCarNum();
+			if (isSuccess) {
+				typeof cb === 'function' && cb();
+				// 设置购物车数量
+				this.shoppingCarNum();
+			} else {
+				this.$uniTools.showToast({title: '修改失败'});
+			}
 			return isSuccess;
 		}
 	}

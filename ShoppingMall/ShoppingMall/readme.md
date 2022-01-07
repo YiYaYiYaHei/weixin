@@ -72,7 +72,7 @@
 ```
 # 踩坑记录
 > 服务器获取openid、sessionKey
-1. 注意mainfest.json -> mp-weixin：appid 要 和后台保持一致，否则会报40029（code无效）
+1. 注意mainfest.json -> mp-weixin：appid 要 和后台保持一致，否则会报40029（code无效）。
 ---
 
 > pages.json：pages -> style -> navigationStyle:custom
@@ -80,55 +80,55 @@
 ---
 
 > background 背景图相关
-1. 小程序不支持本地图片，只支持网络访问或者base64：当图片大小<40kb时，uni-app会自动转换为base64格式，>40kb时，不会自动转换，需要人工转换
+1. 小程序不支持本地图片，只支持网络访问或者base64：当图片大小<40kb时，uni-app会自动转换为base64格式，>40kb时，不会自动转换，需要人工转换。
 ---
 
 > uni-forms相关
-1. Forms Props: 使用modelValue无法实现表单校验，改为v-model/value
-2. 使用uni-easyinput 和 uni-data-checkbox 等关联组件，只需绑定 v-model，无需其他操作
-3. 使用原生 input、checkbox 或三方组件等，需要给组件绑定 binddata 方法才能触发表单校验
-4. validateFunction自定义校验规则：此时设置rules无效，需要在onReady生命周期调用组件的setRules方法绑定验证规则
+1. Forms Props: 使用modelValue无法实现表单校验，改为v-model/value。
+2. 使用uni-easyinput 和 uni-data-checkbox 等关联组件，只需绑定 v-model，无需其他操作。
+3. 使用原生 input、checkbox 或三方组件等，需要给组件绑定 binddata 方法才能触发表单校验。
+4. validateFunction自定义校验规则：此时设置rules无效，需要在onReady生命周期调用组件的setRules方法绑定验证规则。
 ---
 
 > 状态栏、胶囊
-1. 设置状态栏字体颜色： page.jsoan -> navigationBarTextStyle
-2. 微信小程序右上角的胶囊无法去除，可以通过uni.getMenuButtonBoundingClientRect()获取胶囊尺寸
+1. 设置状态栏字体颜色： page.jsoan -> navigationBarTextStyle。
+2. 微信小程序右上角的胶囊无法去除，可以通过uni.getMenuButtonBoundingClientRect()获取胶囊尺寸。
 ---
 
 > video
-1. src使用本地路径(/static.images/.mp4 或 ../../static/images/.mp4)，无法播放；需要使用网络路径http://xx
+1. src使用本地路径(/static.images/.mp4 或 ../../static/images/.mp4)，无法播放；需要使用网络路径http://xx。
 ---
 
 > scroll-view
-1. scroll-x：横向滚动未生效时，试试给scroll-view元素添加white-space: nowrap;
-2. scroll-view使用flex布局时：① flex不能直接添加到scroll-view上，需要在scroll-view下创建view元素包裹，给view元素添加flex布局；② 内容被遮盖时：使用定位（view绝对定位，scroll-view相对定位）并给view设置min-width
+1. scroll-x：横向滚动未生效时，试试给scroll-view元素添加white-space: nowrap。
+2. scroll-view使用flex布局时：① flex不能直接添加到scroll-view上，需要在scroll-view下创建view元素包裹，给view元素添加flex布局；② 内容被遮盖时：使用定位（view绝对定位，scroll-view相对定位）并给view设置min-width。
 ---
 
 > dom操作
-1. uni.createSelectorQuery().select('#box')无法获取子组件的dom，需要通过refs调用子组件的getDom方法
-2. uni-app不能对节点进行增删改查操作，目前只能获取到位置信息
+1. uni.createSelectorQuery().select('#box')无法获取子组件的dom，需要通过refs调用子组件的getDom方法。
+2. uni-app不能对节点进行增删改查操作，目前只能获取到位置信息。
 
 >上拉加载
-1. 可以设置页面上拉触底事件触发时距页面底部距离： pages.json -> onReachBottomDistance（默认50px）
-2. 添加页面生命周期onReachBottom并手动调用this.reachBottomEvt();，在onLoad生命周期中，为this.requestListParams参数赋值并调用this.getList()
+1. 可以设置页面上拉触底事件触发时距页面底部距离： pages.json -> onReachBottomDistance（默认50px）。
+2. 添加页面生命周期onReachBottom并手动调用this.reachBottomEvt();，在onLoad生命周期中，为this.requestListParams参数赋值并调用this.getList()。
 ---
 
 >下拉刷新
-1. 设置允许下拉刷新：pages.json -> "enablePullDownRefresh": true
-2. 添加页面生命周期onPullDownRefresh并手动调用this.refreshList('pullDownRefresh');
+1. 设置允许下拉刷新：pages.json -> "enablePullDownRefresh": true。
+2. 添加页面生命周期onPullDownRefresh并手动调用this.refreshList('pullDownRefresh')。
 ---
 
 > 图片预览：previewImage
 1. 可以实现轮播式图片预览
-2. 长按图片操作：uni.previewImage -> longPressActions参数 无法修改长按设置；plus.nativeUI.previewImage可以设置自定义长按操作，但是仅限APP；小程序和H5 没有plus
+2. 长按图片操作：uni.previewImage -> longPressActions参数 无法修改长按设置；plus.nativeUI.previewImage可以设置自定义长按操作，但是仅限APP；小程序和H5 没有plus。
 ---
 
 > v-for  key相关
-1. v-for的key使用模板字符串（如`color_${i}`）,控制台依旧会报警告，建议直接使用数据中的唯一性标识，比如item.id
+1. v-for的key使用模板字符串（如`color_${i}`）,控制台依旧会报警告，建议直接使用数据中的唯一性标识，比如item.id。
 ---
 
 > v-if
-1. 使用v-if直接判断数据类型时，会报错，建议$tools.getDataType(value, String);
+1. 使用v-if直接判断数据类型时，会报错，建议$tools.getDataType(value, String)。
 ---
 
 > uni-number-box
@@ -137,4 +137,4 @@
 ---
 
 > switchTab
-1. uni.switchTab({url: '/pages/home/index'}); 跳转后无法初始化页面: [uni-app开发小程序-使用uni.switchTab跳转后页面不刷新的问题](https://www.cnblogs.com/cap-rq/p/11120438.html)
+1. uni.switchTab({url: '/pages/home/index'}); 跳转后无法初始化页面: [uni-app开发小程序-使用uni.switchTab跳转后页面不刷新的问题](https://www.cnblogs.com/cap-rq/p/11120438.html)。

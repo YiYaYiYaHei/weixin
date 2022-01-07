@@ -367,6 +367,8 @@ const isIp = (str) => {
   }
 };
 
+const getTimeStamp = () => new Date().getTime();
+
 export {
 	getModules
 }
@@ -391,5 +393,6 @@ export default {
 	isChinese,
 	isPhone,
 	isEmail,
-	isIp
+	isIp,
+	getTimeStamp
 }

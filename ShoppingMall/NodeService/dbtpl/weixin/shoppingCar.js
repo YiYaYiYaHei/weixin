@@ -37,7 +37,7 @@
       if (find_res.status === 200) {
         // 2、商品存在（即用户Id、商品id、商品尺寸、商品颜色一摸一样） - 数据库数量 + 新增数量
         if (find_res.data.length) {
-          await dbFunc.updateFunc('shoppingCar', {data: {goodsNum: find_res.data[0].goodsNum + Number(params.goodsNum)}, where}).catch(e => {
+          await dbFunc.updateFunc('shoppingCar', {data: {goodsNum: find_res.data[0].goodsNum + Number(params.goodsNum), updateTime: Date.now()}, where}).catch(e => {
             common.resSend(res, e);
             return;
           });
@@ -47,7 +47,9 @@
             goodsId: params.goodsId,
             goodsNum: params.goodsNum,
             goodsSize: params.goodsSize,
-            goodsColor: params.goodsColor
+            goodsColor: params.goodsColor,
+            updateTime: Date.now(),
+            createTime: Date.now()
           };
           // 3、商品不存在 - 将商品 插入购物车表
           await dbFunc.insertFunc('shoppingCar', carData).catch(e => {
@@ -81,7 +83,7 @@
       });
       if (find_total.status === 200) {
         // 2、查询购物车表  -- 多表联查，返回购物车+对应商品属性   select * from shoppingcar left join goods on shoppingcar.goodsId=goods.goodsId WHERE uId=17 limit 0,100;
-        const sql = `select * from shoppingcar left join goods on shoppingcar.goodsId=goods.goodsId WHERE uId=${userInfo.uId} limit ${(params.pageCurrent - 1) * params.pageSize}, ${params.pageSize};`
+        const sql = `SELECT * FROM shoppingcar LEFT JOIN goods ON shoppingcar.goodsId=goods.goodsId WHERE uId=${userInfo.uId} ORDER BY updateTime DESC LIMIT ${(params.pageCurrent - 1) * params.pageSize}, ${params.pageSize};`
         const find_res = await dbFunc.SQLOperator(sql).catch(e => {
           common.resSend(res, e);
           return;

@@ -59,8 +59,10 @@
 	methods: {
 		// 页面滚动到底部的事件--在onReachBottom生命周期调用
 		reachBottomEvt() {
-			this.pagingData.current++;
-			this.getList();
+			if (this.pagingData.current * this.pagingData.size < this.pagingData.total) {
+				this.pagingData.current++;
+				this.getList();
+			}
 		},
 		// 获取分页参数
 		getPageParams() {
@@ -76,7 +78,7 @@
 		/**
 		 * 获取列表数据
 		 * 调用getList方法前需设置请求地址(requestListParams.requestApi)和参数(requestListParams.params 对分页参数已做自动添加)
-		 * @param {Function | Null} callback - 回调函数
+		 * @param {Function | Null} [callback] - 回调函数
 		 *
 		 */
 		async getList(callback) {
@@ -100,16 +102,20 @@
 				this.loadMoreData.otherStatus = 'error';
 				this.$uniTools.showToast({title: result.message});
 			}
-			callback && callback();
+			typeof callback === 'function' && callback();
+		},
+		// 重置列表数据
+		resetList() {
+			this.pagingData.current = 1;
+			this.pagingData.total = 0;
+			this.listData = [];
 		},
 		/**
 		 * 按条件搜索时调用   查询、删除、新增时调用
 		 * @param {String} type - 操作类型，type=pullDownRefresh表示下拉刷新操作
 		 */
 		refreshList(type) {
-			this.pagingData.current = 1;
-			this.pagingData.total = 0;
-			this.listData = [];
+			this.resetList();
 			/* setTimeout(() => {
 				(type === 'pullDownRefresh') && this.getList(() => uni.stopPullDownRefresh());
 				(type !== 'pullDownRefresh') && this.getList();
@@ -126,14 +132,32 @@
 			});
 		},
 		/** 
-		 * 删除列表某一项 - 删除成功后停留在滚动位置时使用
-		 * @param {String} key - 键名
-		 * @param {String} value - 键值
-		 * @param {Array} list - 数据
+		 * 刷新列表后，列表滚动位置不变 - 比如购物车 编辑商品、删除商品 成功后，列表都停留在操作位置
+		 * 由于要保证数据刷新后，列表的滚动位置不变，所以需要获取操作项的索引，然后判断它在第几页，使用splice手动去刷新列表数据
+		 * @param {String} key - key名
+		 * @param {Any} value - key值
+		 * @param {Function} [callback] - 回调函数
 		 */
-		deleteListItem(key, value, list = this.listData) {
-			const index = list.findIndex(it => it[key] === value);
-			index > -1 && list.splice(index, 1);
+		async saveListScrollPos(key, value, callback) {
+			// 1、获取操作项的索引
+			const index = this.listData.findIndex(it => it[key] === value);
+			// 2、计算操作项在第几页
+			const pageCurrent = Math.ceil((index + 1) / this.pagingData.size);
+			const pageParams = {
+				pageCurrent,
+				pageSize: this.pagingData.size,
+			};
+			// 3、重新请求该页的数据
+			this.requestListParams.params = this.requestListParams.params ? Object.assign(this.requestListParams.params, {...pageParams}) : {...pageParams};
+			let result = await this.requestListParams.requestApi(this.requestListParams.params);
+			if (result.status === 200) {
+				// 4、更新数组中该页的数据
+				const newData = (result.data || {rows: []}).rows;
+				this.listData.splice((pageCurrent - 1) * this.pagingData.size, this.pagingData.size, ...newData);
+				typeof callback === 'function' && callback();
+			} else {
+				this.$uniTools.showToast({title: result.message});
+			}
 		}
 	}
  }

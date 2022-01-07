@@ -24,4 +24,4 @@ pnpm-debug.log*
 *.sw?
 vue.config.js
 
-unpackage
+ShoppingMall/ShoppingMall/unpackage/

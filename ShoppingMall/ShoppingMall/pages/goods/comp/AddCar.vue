@@ -10,9 +10,7 @@
 export default {
 	name: 'AddCar',
 	data() {
-		return {
-			
-		}
+		return {}
 	},
 	methods: {
 		// 加入购物车
