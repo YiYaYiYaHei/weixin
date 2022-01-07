@@ -36,3 +36,5 @@ INSERT INTO `subclassification` VALUES (36, 9, '应季百货', 'https://g-search
 INSERT INTO `subclassification` VALUES (37, 9, '应季百货', 'https://g-search1.alicdn.com/img/bao/uploaded/i4/imgextra/i2/106980377/O1CN01w7zbGD1Eei0E4vMJG_!!0-saturn_solar.jpg_180x180.jpg_.webp', '驱蚊液');
 INSERT INTO `subclassification` VALUES (38, 9, '个人清洁', 'https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/2206686532409/O1CN01ZTrAwI1TfMoJTr7Gx_!!2206686532409-0-picassoopen.jpg_180x180.jpg_.webp', '洗发护发');
 INSERT INTO `subclassification` VALUES (39, 1, '外套上衣', 'https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/289910206/O1CN01Js7oyF1DOOGyj8jNR_!!0-item_pic.jpg_180x180.jpg_.webp', '风衣');
+INSERT INTO `subclassification` VALUES (40, 1, '外套上衣', 'https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/289910206/O1CN01Js7oyF1DOOGyj8jNR_!!0-item_pic.jpg_180x180.jpg_.webp', '风衣');
+INSERT INTO `subclassification` VALUES (41, 1, '外套上衣', 'https://g-search1.alicdn.com/img/bao/uploaded/i4/i3/289910206/O1CN01Js7oyF1DOOGyj8jNR_!!0-item_pic.jpg_180x180.jpg_.webp', '风衣');

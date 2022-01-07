@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80025
 File Encoding         : 65001
 
-Date: 2021-11-02 09:39:02
+Date: 2022-01-07 18:05:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -108,6 +108,36 @@ INSERT INTO `goods` VALUES ('ZHIZHI致知 天香引 碎花裙2021新款夏季气
 INSERT INTO `goods` VALUES ('白色炸街短款小西装外套女春季2021新款宽松港风气质时尚西服上衣', '48.98', '49.00', '52', 'https://img.alicdn.com/imgextra/i2/12679134/O1CN01LgfE662HLQK9QjlYA_!!0-saturn_solar.jpg_468x468q75.jpg_.webp');
 
 -- ----------------------------
+-- Table structure for shoppingcar
+-- ----------------------------
+DROP TABLE IF EXISTS `shoppingcar`;
+CREATE TABLE `shoppingcar` (
+  `uId` int NOT NULL COMMENT '用户id',
+  `goodsId` int NOT NULL COMMENT '商品id',
+  `carId` int unsigned NOT NULL AUTO_INCREMENT COMMENT '购物车货物id',
+  `goodsNum` int NOT NULL COMMENT '商品数量',
+  `goodsColor` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '商品颜色',
+  `goodsSize` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createTime` bigint NOT NULL COMMENT '创建时间戳',
+  `updateTime` bigint NOT NULL COMMENT '修改时间',
+  PRIMARY KEY (`carId`)
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of shoppingcar
+-- ----------------------------
+INSERT INTO `shoppingcar` VALUES ('16', '1', '59', '1', '绿色', '160/84A/M', '1641440494355', '1641462660779');
+INSERT INTO `shoppingcar` VALUES ('16', '1', '73', '3', '蓝色', '155/80A/S', '1641440906622', '1641545918969');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '80', '1', '蓝色', '155/80A/S', '1641546851136', '1641546851136');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '81', '1', '蓝色', '160/84A/M', '1641546853451', '1641546853451');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '82', '1', '蓝色', '165/88A/L', '1641546855575', '1641546855575');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '83', '1', '绿色', '155/80A/S', '1641546859221', '1641546859221');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '84', '1', '绿色', '160/84A/M', '1641546861440', '1641546861440');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '85', '3', '绿色', '165/88A/L', '1641546863518', '1641546866492');
+INSERT INTO `shoppingcar` VALUES ('16', '5', '86', '1', '绿色', '155/80A/S', '1641546884508', '1641546884508');
+INSERT INTO `shoppingcar` VALUES ('16', '5', '88', '1', '蓝色', '165/88A/L', '1641546888353', '1641546888353');
+
+-- ----------------------------
 -- Table structure for subclassification
 -- ----------------------------
 DROP TABLE IF EXISTS `subclassification`;
@@ -174,8 +204,8 @@ CREATE TABLE `user` (
   `createdTime` bigint DEFAULT NULL COMMENT '创建时间',
   `loginTime` bigint DEFAULT NULL COMMENT '最后登录时间',
   `nickName` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户昵称',
-  `gender` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户性别',
-  `avatarUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户头像',
+  `gender` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户性别',
+  `avatarUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户头像',
   PRIMARY KEY (`uId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
