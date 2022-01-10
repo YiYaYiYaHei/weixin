@@ -1597,3 +1597,7 @@ checkbox-group label {
 		@include border(left, 1px, rgba(252, 252, 252, .3));
 	}
 }
+
+button {
+	border-radius: 0;
+}

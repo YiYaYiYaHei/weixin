@@ -2,7 +2,7 @@
 <template>
 	<view class="add-car-container">
 		<button type="default" data-status-box="warning" @click="$emit('addCarEvt')">加入购物车</button>
-		<button type="default" data-status-box="error" @click="buyEvt">立即购买</button>
+		<button type="warn" @click="buyEvt">立即购买</button>
 	</view>
 </template>
 
@@ -32,11 +32,10 @@ export default {
 	width: 100%;
 	height: 38px;
 	button {
+		display: inline-block;
 		width: 50%;
 		height: 100%;
-		background-color: transparent;
 		font-size: $uni-font-size-base;
-		border-radius: 0;
 		&:after {
 			border: none;
 			border-top: 1px solid $uni-border-color;

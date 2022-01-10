@@ -41,7 +41,7 @@
 				<view class="check-all hfull" @click="checkAllEvt"><image class="checkbox vm" :src="require(`@/static/images/shoppingCard/${checkAll ? 'checked' : 'check'}.png`)"></text>全选</view>
 				<view class="box">
 					<view class="total">合计：<text>￥{{checkedList.priceTotal.toFixed(2)}}</text></view>
-					<button type="default" data-status-box="error" @click="buyEvt">去结算({{checkedList.goodsNum}})</button>
+					<button type="warn" :disabled="!checkedList.goodsNum">去结算({{checkedList.goodsNum}})</button>
 				</view>
 			</view>
 		</view>
