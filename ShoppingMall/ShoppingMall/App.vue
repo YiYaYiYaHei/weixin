@@ -17,6 +17,6 @@ export default {
 @import './styles/uni.scss';
 // 通用class名
 @import './styles/common.scss';
-// 一些部分页面的通用样式
-@import  './styles/index.scss';
+// 重置uni组件部分样式
+@import  './styles/reset.scss';
 </style>

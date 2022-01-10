@@ -2,8 +2,8 @@
  * uni-app原生方法
  *********************************************************************/
  import Tool from './tools.js';
- 
-/** 
+
+/**
  * @description 消息提示框
  * @param {Object} obj - showToast配置项
  * @param {Function} successCb - showToast调用成功的回调函数
@@ -15,7 +15,7 @@ const showToast = (obj = {}, successCb, errorCb) => {
 				image = obj.image || '',                                 // 自定义图标的本地路径
 				mask = obj.mask || false,                                // 是否显示透明蒙层，防止触摸穿透，默认：false
 				duration = obj.duration || 1500,                         // 提示的延迟时间，单位毫秒，默认：1500
-				position = obj.position || 'center';                     // 值为top、center、bottom;纯文本轻提示显示位置，填写有效值后只有 title 属性生效， 
+				position = obj.position || 'center';                     // 值为top、center、bottom;纯文本轻提示显示位置，填写有效值后只有 title 属性生效，
 	uni.showToast({
 	    title,
 			icon,
@@ -33,7 +33,7 @@ const showToast = (obj = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 显示 loading 提示框, 需主动调用 uni.hideLoading 才能关闭提示框。
  * @param {Object} obj - showLoading配置项
  * @param {Function} successCb - showLoading调用成功的回调函数
@@ -56,7 +56,7 @@ const showLoading = (obj = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 显示模态弹窗(alert、confirm)--根据端的不同，确认和取消按钮存在位置差异
  * @param {Object} obj - showModal配置项
  * @param {Function} successCb - showModal调用成功的回调函数(“确定”按钮 返回 “确定”, “取消”按钮 返回 “取消”)
@@ -95,7 +95,7 @@ const showModal = (obj = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 从底部向上弹出操作菜单
  * @param {Object} obj - showActionSheet配置项
  * @param {Function} successCb - showActionSheet调用成功的回调函数
@@ -121,7 +121,7 @@ const showActionSheet = (obj = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 路由跳转--在onLoad生命周期中可以获取参数(不能跳转到tabBar)
  * @param {Object} obj - navigateTo配置项
  * @param {Object} events - 页面间通信接口，用于监听被打开页面发送到当前页面的数据。2.8.9+ 开始支持。--跳转后的页面发数据给跳转前的页面
@@ -163,7 +163,7 @@ const navigateTo = (obj = {}, events = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 关闭当前页面，返回上一页面或多级页面。可通过 getCurrentPages() 获取当前的页面栈，决定需要返回几层。
  * @param {Object} obj - navigateBack配置项
  */
@@ -178,7 +178,7 @@ const navigateBack = (obj = {}) => {
 	});
 };
 
-/** 
+/**
  * @description 从本地相册选择图片或使用相机拍照
  * @param {Object} obj - 上传文件配置项
  * @param {Function} successCb - 上传图片成功的回调函数
@@ -204,7 +204,7 @@ const chooseImage = (obj = {}, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 保存文件到本地
  * @param {Object} tempFilePath - 需要保存的文件的临时路径
  * @param {Function} successCb - 文件保存成功的回调函数
@@ -227,7 +227,7 @@ const saveFile = (tempFilePath, successCb, errorCb) => {
 	});
 };
 
-/** 
+/**
  * @description 获取节点基本信息(uni-app不能对节点进行增删改查操作，目前只能获取到位置信息，子组件的节点需要通过refs来调用getDom方法)
  * @param {Object} _this - 组件this
  * @param {Function} className - 选择器：.box，  #box，  .box>a，   .box a，  .box>>>a，.box,a
@@ -249,7 +249,7 @@ const getDom = (_this, className, isAll = true) => {
 	});
 };
 
-/** 
+/**
  * @description 带过期时间的存储（无法自动删除，需手动调用判断）
  * @param {String} key - 存储key（只传key时，表示判断是否过期）
  * @param {String} value - 存储value
@@ -262,7 +262,7 @@ const setStorage = (key, value, seconds) => {
 	}
 	// 获取当前时间的秒
 	var timestamp = Date.parse(new Date()) / 1000;
-	
+
 	// 判断是否过期
 	if (key && !value) {
 		var val = uni.getStorageSync(key);
@@ -282,7 +282,7 @@ const setStorage = (key, value, seconds) => {
 	}
 };
 
-/** 
+/**
  * @description 预览图片
  * @param {Object} obj - previewImage配置项
  * @param {Function} successCb - errorCb接口调用成功的回调函数
@@ -353,7 +353,7 @@ const previewImage = (obj = {}, successCb, errorCb, isCustomizeLong = false) => 
 	}
 };
 
-/** 
+/**
  * @description 模拟a标签的锚点链接
  * @param {String} className - css选择器：.box，  #box，  .box>a，   .box a，  .box>>>a，.box,a
  * @param {String|Object} pDom - 父节点css选择器 | 父节点位置信息

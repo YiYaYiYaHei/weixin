@@ -1,3 +1,5 @@
+// 系统公共样式
+
 // 字体样式
 .fs0 {
 	font-size: 0;
@@ -48,7 +50,7 @@
 .fl {
   float: left;
 }
-/*清浮动*/
+// 清浮动
 .cls-float {
   zoom: 1;
   &:after {
@@ -142,42 +144,43 @@
 .pdlr30 {
 	padding: 0 30rpx;
 }
+
 // 状态
 [data-status-text="primary"] {
 	@include textColor($uni-color-primary);
 }
 [data-status-text="warning"] {
 	@include textColor($uni-color-warning);
-} 
+}
 [data-status-text="error"] {
 	@include textColor($uni-color-error);
-} 
+}
 [data-status-text="success"] {
 	@include textColor($uni-color-success);
-} 
+}
 [data-status-text="disabled"] {
 	@include textColor($uni-text-color-grey);
-} 
+}
 [data-status-box="primary"] {
 	@include statusBox($uni-color-primary);
 }
 [data-status-box="warning"] {
 	@include statusBox($uni-color-warning);
-} 
+}
 [data-status-box="error"] {
 	@include statusBox($uni-color-error);
-} 
+}
 [data-status-box="success"] {
 	@include statusBox($uni-color-success);
-} 
+}
 [data-status-box="disabled"] {
 	@include statusBox($uni-text-color-grey);
 }
 
 // 按钮
 .btn-large {
-	 width: 600rpx;
-	 @include line-height(80rpx);
+	width: 600rpx;
+	@include line-height(80rpx);
 }
 
 // 其他

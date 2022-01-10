@@ -2,7 +2,7 @@
 	<view class="goods-list-container full">
 		<base-list :loadMoreData="loadMoreData" @requestErrorReflash="getList">
 			<uni-list>
-				<uni-list-item v-for="(item, i) in listData" 
+				<uni-list-item v-for="(item, i) in listData"
 				               :key="i"
 											 class="list-item-box box-sizing"
 											 :to="`/pages/goods/detail?goodsId=${item.goodsId}`">

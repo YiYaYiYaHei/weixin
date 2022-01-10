@@ -253,11 +253,11 @@ const getStringLength = (str) => {
   return num;
 };
 
-/** 
+/**
  * 获取数据类型, null 、undefined无constructor
  * @param {Any} data - 需要判断数据类型的数据
  * @param {String | Object} type - 类型
- * @return {Boolean} 
+ * @return {Boolean}
  * @example this.$tools.getDataType(value1, Object)
  */
 const getDataType = (data, type) => {

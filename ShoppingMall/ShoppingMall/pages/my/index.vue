@@ -19,7 +19,7 @@ export default {
 		// 页面滚动到底部的事件（不是scroll-view滚到底），常用于下拉下一页数据。
 	},
 	methods: {
-		
+
 	}
 }
 </script>

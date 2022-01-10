@@ -4,7 +4,7 @@
 			<view class="classification-index-tab-box">
 				<base-tab v-model="activeType" :options="tabList" tabPos="column" valueKey="classificationId" label="classificationName"></base-tab>
 			</view>
-			
+
 			<scroll-view scroll-y class="hfull scroll-view">
 				<view class="classification-index-content-box wfull" v-for="item, i in classificationList" :key="item.label">
 					<view class="title">{{item.label}}</view>
@@ -74,57 +74,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.classification-index-container {
-		@include flex;
-		.classification-index-tab-box {
-			width: calc(30% - 30rpx);
-			height: 100%;
-			margin-right: 30rpx;
-			/deep/.base-tab-container {
-				background-color: #F2F2F2;
-				.base-tab-item {
-					&.active {
-						background-color: white;
-						.base-tab-item-text {
-							color: $uni-color-success;
-						}
-					}
-				}
-			}
-		}
-	}
-	.scroll-view {
-		width: 70%;
-		height: 100%;
-		.classification-index-content-box {
-			.title {
-				@include line-height(72rpx);
-				font-size: 14px;
-				color: #8E8E8E;
-			}
-			.content {
-				padding: 30rpx 30rpx 10rpx 30rpx;
-				border: 1px solid #F2F2F2;
-				border-radius: 5px 0 0 5px;
-				.content-item {
-					display: inline-block;
-					vertical-align: middle;
-					margin: 0 20rpx 20rpx 0;
-					.image {
-						width: 120rpx;
-						height: 120rpx;
-					}
-					.title {
-						width: 120rpx;
-						text-align: center;
-						color: $uni-text-color;
-						@include line-height(52rpx);
-					}
-				}
-			}
-			&:nth-last-of-type(1) {
-				margin-bottom: 20rpx;
-			}
-		}
-	}
+.classification-index-container {
+  @include flex;
+  .classification-index-tab-box {
+    width: calc(30% - 30rpx);
+    height: 100%;
+    margin-right: 30rpx;
+    /deep/.base-tab-container {
+      background-color: #F2F2F2;
+      .base-tab-item {
+        &.active {
+          background-color: white;
+          .base-tab-item-text {
+            color: $uni-color-success;
+          }
+        }
+      }
+    }
+  }
+}
+.scroll-view {
+  width: 70%;
+  height: 100%;
+  .classification-index-content-box {
+    .title {
+      @include line-height(72rpx);
+      font-size: 14px;
+      color: #8E8E8E;
+    }
+    .content {
+      padding: 30rpx 30rpx 10rpx 30rpx;
+      border: 1px solid #F2F2F2;
+      border-radius: 5px 0 0 5px;
+      .content-item {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 20rpx 20rpx 0;
+        .image {
+          width: 120rpx;
+          height: 120rpx;
+        }
+        .title {
+          width: 120rpx;
+          text-align: center;
+          color: $uni-text-color;
+          @include line-height(52rpx);
+        }
+      }
+    }
+    &:nth-last-of-type(1) {
+      margin-bottom: 20rpx;
+    }
+  }
+}
 </style>

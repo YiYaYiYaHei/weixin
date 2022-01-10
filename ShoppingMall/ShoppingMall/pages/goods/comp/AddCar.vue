@@ -21,7 +21,7 @@ export default {
 		},
 		// 立即购买
 		buyEvt() {
-			
+
 		}
 	}
 }

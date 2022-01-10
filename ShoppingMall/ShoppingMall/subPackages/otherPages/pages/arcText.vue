@@ -1,6 +1,6 @@
 <template>
 	<view class="full">
-		<view class="uni-padding-wrap pd0">
+		<view class="pd0">
 			<view class="page-section swiper">
 				<view class="page-section-spacing">
 					<swiper class="swiper" :circular="true" @change="swiperChange">
@@ -12,13 +12,13 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<view class="arcTexts">
 			<text class="dinlineb" v-for="(item, i) in arcTextTest.data" :key="i" style="font-size: 22rpx;">
 				<text class="dinlineb" v-for="it in item" :key="it.label" :style="it.style">{{it.label}}</text>
 			</text>
 		</view>
-		
+
 		<view class="bottom-container wfull fs-sm" :animation="animationData">
 			<view class="swiper-item hfull dinlineb" v-for="(item, i) in listFinallyShow" :key="i">
 				<text class="label dinlineb" v-for="it in item" :key="it.label" :style="it.style">{{it.label}}</text>
@@ -31,7 +31,7 @@
 	import Arctext from '../plugins/arctext.js';
 	export default {
 		data() {
-			return { 
+			return {
 				list: [
 					{label: '话梅商店'},
 					{label: '线下门店'},
@@ -48,7 +48,7 @@
 				arcTextTest: {  // 弧形文字示例
 					obj: null,
 					data: []
-				},  
+				},
 			};
 		},
 		watch: {
@@ -67,7 +67,7 @@
 		onShow() {
 			// 获取可视区域宽度,计算展示的listShow
 			this.calcusList();
-			
+
 			// 绘制弧形文字示例
 			this.drawArcTextTest();
 		},

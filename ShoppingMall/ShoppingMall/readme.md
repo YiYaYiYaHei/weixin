@@ -41,7 +41,7 @@
 │
 ├─plugins                    // 插件
 │  └─luch-request            // ajax
-│ 
+│
 ├─static                    // 静态文件，不会被打包压缩，大图建议上传至服务器使用
 │  │  logo.png
 │  │  uni.ttf

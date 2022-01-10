@@ -3,7 +3,7 @@
 		<view class="shopping-car-container">
 			<base-list :loadMoreData="loadMoreData" @requestErrorReflash="getList">
 				<scroll-view class="wfull">
-					<view v-for="(item, i) in listData" 
+					<view v-for="(item, i) in listData"
 							  :key="i"
 							  @touchstart.prevent="(event) => touchStart(event, i)"
 							  @touchmove.prevent="(event) => touchMove(event, i)"
@@ -35,7 +35,7 @@
 					</view>
 				</scroll-view>
 			</base-list>
-			
+
 			<view class="footer-btn dflex">
 				<!-- 全选 -->
 				<view class="check-all hfull" @click="checkAllEvt"><image class="checkbox vm" :src="require(`@/static/images/shoppingCard/${checkAll ? 'checked' : 'check'}.png`)"></text>全选</view>
@@ -45,7 +45,7 @@
 				</view>
 			</view>
 		</view>
-		
+
 		<!-- 商品属性、已选 -->
 		<goods-property ref="goodsProperty" :isShow="goodsPropertyData.nodeId" :goodsProperty="goodsPropertyData.propertyData" :userChooseData.sync="userChooseData">
 			<button type="primary" @click="updatePropertySubmit">确 定</button>
@@ -99,7 +99,7 @@ export default {
 		// 刷新列表 - 为了保证每次跳转到购物车都从第一页开始查询
 		this.resetList();
 		this.getListData();
-		
+
 		this.shoppingCarNum();
 	},
 	methods: {
