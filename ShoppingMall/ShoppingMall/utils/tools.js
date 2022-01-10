@@ -30,7 +30,7 @@ const getModules = (name) => {
 		value.default && (modules[moduleName] = value.default);
 		return modules;
 	}, {});
-}
+};
 
 // 根据权限跳转首页
 const jumpRoute = (userRole) => {
@@ -56,7 +56,7 @@ const formatLocation = (longitude, latitude) => {
 	return {
 		longitude: longitude.toString().split('.'),
 		latitude: latitude.toString().split('.')
-	}
+	};
 };
 
 /**
@@ -113,7 +113,7 @@ const dateUtils = {
 		 * @example  this.$tools.dateUtils.format("2019-10-14 10:10:10")
 		 */
 		format: function(dateStr) {
-			var date = this.parse(dateStr)
+			var date = this.parse(dateStr);
 			var diff = Date.now() - date.getTime();
 			if (diff < this.UNITS['天']) {
 				return this.humanize(diff);
@@ -262,7 +262,7 @@ const getStringLength = (str) => {
  */
 const getDataType = (data, type) => {
 	return data ? data.constructor === type : typeof data === type;
-}
+};
 
 // 判断数据是否为空  true 为空
 const dataIsEmpty = (data) => {
@@ -371,7 +371,7 @@ const getTimeStamp = () => new Date().getTime();
 
 export {
 	getModules
-}
+};
 
 export default {
 	jumpRoute,
@@ -395,4 +395,4 @@ export default {
 	isEmail,
 	isIp,
 	getTimeStamp
-}
+};

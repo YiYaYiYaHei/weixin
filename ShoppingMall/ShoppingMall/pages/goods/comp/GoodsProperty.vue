@@ -72,7 +72,7 @@ export default {
 		userChooseData: {
 			deep: true,
 			handler: function(val) {
-				console.log(val)
+				console.log(val);
 				this.$emit('update:userChooseData', val);
 			}
 		}
@@ -80,9 +80,9 @@ export default {
 	data() {
 		return {
 			nodeId: 0
-		}
+		};
 	}
-}
+};
 </script>
 
 <style lang="scss" scoped>

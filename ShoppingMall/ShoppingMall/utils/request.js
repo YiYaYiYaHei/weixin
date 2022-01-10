@@ -13,13 +13,13 @@ const MESSAGE = {
 	NETWORK_ERR: '哎哟,出问题啦,刷新界面试试！',
 	PERMISSION_DENIED: '凭证失效，请重新登录',
 	NETWORK_REFUSE: '服务器拒绝连接或连接超时'
-}
+};
 
 // 请求拦截器
 request.interceptors.request.use((config) => {
   return config;
 }, config => {
-  return Promise.reject(config)
+  return Promise.reject(config);
 });
 
 // 响应拦截器
@@ -27,13 +27,13 @@ request.interceptors.response.use((response) => {
 	// 去除response的data层 直接使用数据就可以res.xx即可
 	return response.data;
 }, (response) => {
-  return Promise.reject(response)
+  return Promise.reject(response);
 });
 
 // 获取请求地址
 const getUrl = (url, urlPrefix = 'BASE_URL') => {
 	return !!url ? `${UrlConfig[urlPrefix]}${url}` : '';
-}
+};
 
 // 根据header里的contenteType转换请求参数
 const transformRequestData = (requestConfig) => {
@@ -47,11 +47,11 @@ const transformRequestData = (requestConfig) => {
 			}
 		}
 		return encodeURI(str.slice(0, str.length - 1));
-	} else {
+	}
 		// json字符串{key: value}
 		return !!Object.keys(requestData).length ? JSON.stringify(requestData) : '';
-	}
-}
+
+};
 
 // 构建请求头
 const buildReqHeader = (requestConfig) => {
@@ -61,7 +61,7 @@ const buildReqHeader = (requestConfig) => {
 		"Content-Type": requestConfig.contentType,
 		"Authorization": token
 	};
-}
+};
 
 // 构建请求配置
 const buildRequestConfig = (requestConfig) => {
@@ -116,7 +116,7 @@ const buildRequestConfig = (requestConfig) => {
 	}
 
 	return config;
-}
+};
 
 // 发送请求
 const sendRequest = async (requestConfig) => {
@@ -129,7 +129,7 @@ const sendRequest = async (requestConfig) => {
 		return {
 			message: isTimeout ? MESSAGE.NETWORK_REFUSE : MESSAGE.NETWORK_ERR,
 			status: isTimeout ? 502 : 500
-		}
+		};
 	});
 	if (requestConfig.showLoading) uni.hideLoading();
 	if (!result) {
@@ -148,7 +148,7 @@ const sendRequest = async (requestConfig) => {
 	}
 	if (result.status >= 500 && result.status !== 502) result.message = result.message || MESSAGE.NETWORK_ERR;
 	return result;
-}
+};
 
 // 文件下载
 const downLoadEvt = (requestConfig, successCb, errorCb) => {
@@ -174,19 +174,18 @@ const downLoadEvt = (requestConfig, successCb, errorCb) => {
 			});
 		}
 	});
-}
+};
 
 // 文件下载请求--根据successCb/errorCb判断是否有requestTask, 默认返回接口结果
 const sendDownLoadReq = async (requestConfig) => {
 	if (requestConfig.successCb || requestConfig.errorCb) {
 		return downLoadEvt(requestConfig, requestConfig.successCb, requestConfig.errorCb);
-	} else {
+	}
 		const result = await new Promise((resolve, reject) => {
 			downLoadEvt(requestConfig, resolve, reject);
 		});
 		return result;
-	}
-}
+};
 
 /**
  * @description 请求方法封装  get/post/delete/put/upload/download
