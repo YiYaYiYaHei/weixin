@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80025
 File Encoding         : 65001
 
-Date: 2022-01-07 18:05:34
+Date: 2022-01-10 09:53:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -46,9 +46,9 @@ CREATE TABLE `goods` (
   `goodsDescription` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '商品描述',
   `goodsPrice` decimal(10,2) unsigned DEFAULT NULL COMMENT '商品价格',
   `goodsOriginPrice` decimal(10,2) DEFAULT NULL COMMENT '商品原始价格',
-  `goodId` int unsigned NOT NULL AUTO_INCREMENT COMMENT '商品ID',
+  `goodsId` int unsigned NOT NULL AUTO_INCREMENT COMMENT '商品ID',
   `goodsImgUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '商品照片',
-  PRIMARY KEY (`goodId`)
+  PRIMARY KEY (`goodsId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -212,4 +212,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('ed8c51e140b39f0d6be69261e67a0f79e27ec20f3d02fd1857a57209fbe42722', '16', 'yggK9UWkvbD/UsZ+hwS1sg==', 'oz-FM46oLkyJ8H88Tf8EXtXowKy4', '1623396973755', '1635500919987', '微信用户', '未知', 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132');
+INSERT INTO `user` VALUES ('h0g9qtqSgzrpF/r3QpDXVsjplWgrqFuHmBwPIPFKvT25sUnt2r3I2M8Sv40ZYmx7', '16', 'yggK9UWkvbD/UsZ+hwS1sg==', 'oz-FM46oLkyJ8H88Tf8EXtXowKy4', '1623396973755', '1641779350535', '微信用户', '未知', 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132');

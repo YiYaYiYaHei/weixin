@@ -94,7 +94,7 @@
 		padding: 30rpx 0;
 	}
 	.load-more {
-		@include pos(50%, null, null, 50%);
+		@include pos(50%, null, null, 50%, fixed);
 		transform: translate(-50%, -50%);
 	}
 	.empty-img {
