@@ -7,7 +7,7 @@
 			<text class="title">Hello，world</text>
 		</view>
 		<view id="testid3">最近太热啦</view>
-		<view id="testid4"><button @click="guideNodeId = getTimeStamp()">开始新手教程</button></view>
+		<view id="testid4"><button @click="guideNodeId=$tools.getTimeStamp()">开始新手教程</button></view>
 
 		<!-- 新手引导 -->
 		<base-guide :explainList="explainList"
@@ -15,8 +15,8 @@
 								:nodeId="guideNodeId"
 								@closeGuide="closeGuide"
 								@operatorStepEvt="operatorStepEvt">
-			<view v-if="explainList[currentStep].tooltipPos === 'left'">left</view>
-			<view v-if="explainList[currentStep].tooltipPos === 'right'">right</view>
+			<view v-if="explainList[currentStep].tooltipPos==='left'">left</view>
+			<view v-if="explainList[currentStep].tooltipPos==='right'">right</view>
 		</base-guide>
 	</view>
 </template>

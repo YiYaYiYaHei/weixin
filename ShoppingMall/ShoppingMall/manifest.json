@@ -58,10 +58,15 @@
                         "__platform__" : [ "ios", "android" ],
                         "appid" : "wx0d9525966df3c4b2",
                         "UniversalLinks" : ""
+                    },
+                    "appleiap" : {},
+                    "alipay" : {
+                        "__platform__" : [ "ios", "android" ]
                     }
                 },
                 "push" : {},
-                "share" : {}
+                "share" : {},
+                "ad" : {}
             }
         }
     },

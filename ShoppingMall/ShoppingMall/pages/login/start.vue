@@ -24,7 +24,7 @@ export default {
       // 如果有tonken,则更新用户信息
       if (this.token) {
         // 调用更新token接口,若有用户权限操作，更新完跳转至对应页面即可
-        let loginInfo = JSON.parse(uni.getStorageSync('login_info') || '{}');
+        let loginInfo = JSON.parse(uni.getStorageSync('userInfo') || '{}');
         if (!loginInfo.openId) {
           uni.reLaunch({
             url: '/pages/login/login'
@@ -33,7 +33,7 @@ export default {
         }
         let result = await this.$apis.login.refreshToken({openId: loginInfo.openId});
         if (result.status === 200) {
-          uni.setStorageSync('current_login_user_token', result.data.token);
+          uni.setStorageSync('token', result.data.token);
           // 若有用户权限操作，存储完跳转至对应页面即可;
           uni.switchTab({
             url: '/pages/home/index'

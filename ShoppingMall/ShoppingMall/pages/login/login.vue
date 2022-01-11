@@ -90,8 +90,8 @@ export default {
     async loginEvt() {
       let result = await this.$apis.login.login({code: this.code, userInfo: JSON.stringify(this.userInfo)});
       if (result.status === 200) {
-        uni.setStorageSync('current_login_user_token', result.data.token);
-        uni.setStorageSync('login_info', JSON.stringify({code: this.code, ...result.data}));
+        uni.setStorageSync('token', result.data.token);
+        uni.setStorageSync('userInfo', JSON.stringify({code: this.code, ...result.data}));
         this.$store.dispatch('setUserInfo', result.data);
         // 若有用户权限操作，存储完跳转至对应页面即可;
         uni.switchTab({url: '/pages/home/index'});

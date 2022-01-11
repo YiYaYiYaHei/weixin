@@ -18,7 +18,7 @@ const state = {
 
 const getters = {
 	getToken(state) {
-		return state.userInfo.token || uniTools.setStorage('current_login_user_token');
+		return state.userInfo.token || uniTools.setStorage('token');
 	}
 };
 

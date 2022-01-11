@@ -55,7 +55,7 @@ const transformRequestData = (requestConfig) => {
 
 // 构建请求头
 const buildReqHeader = (requestConfig) => {
-	const token = uni.getStorageSync('current_login_user_token');
+	const token = uni.getStorageSync('token');
 	requestConfig.contentType = requestConfig.contentType || (['POST', 'PUT'].includes(requestConfig.method) ? 'application/x-www-form-urlencoded' : 'application/json;charset=utf-8');
 	return {
 		"Content-Type": requestConfig.contentType,

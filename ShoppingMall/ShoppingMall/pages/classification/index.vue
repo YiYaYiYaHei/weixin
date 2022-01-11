@@ -9,7 +9,7 @@
 				<view class="classification-index-content-box wfull" v-for="item, i in classificationList" :key="item.label">
 					<view class="title">{{item.label}}</view>
 					<view class="content">
-						<view class="content-item" v-for="it, j in item.value" :key="it.subClassificationId" @click="jumpPage('/pages/goods/list', {type: it.smallClassificationName})">
+						<view class="content-item" v-for="it, j in item.value" :key="it.subClassificationId" @click="$uniTools.navigateTo({url: '/pages/goods/list', params: {type: it.smallClassificationName}})">
 							<view class="image">
 								<base-image :imgSrc="it.smallClassificationImg"></base-image>
 							</view>

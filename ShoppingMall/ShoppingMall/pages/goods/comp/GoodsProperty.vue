@@ -22,19 +22,13 @@
 			<view class="property-box">
 				<text class="dblock title">颜色</text>
 				<view class="property-list">
-					<text v-for="item, i in goodsProperty.color"
-					     :key="item"
-							 @click="userChooseData.color=item"
-							 :class="{'active': userChooseData.color === item}">{{item}}</text>
+					<text v-for="item in goodsProperty.color" :key="item" @click="userChooseData.color=item" :class="{'active': userChooseData.color === item}">{{item}}</text>
 				</view>
 			</view>
 			<view class="property-box">
 				<text class="dblock title">尺寸</text>
 				<view class="property-list">
-					<text v-for="item, i in goodsProperty.size"
-					     :key="item"
-							 @click="userChooseData.size=item"
-							 :class="{'active': userChooseData.size === item}">{{item}}</text>
+					<text v-for="item in goodsProperty.size" :key="item" @click="userChooseData.size=item" :class="{'active': userChooseData.size === item}">{{item}}</text>
 				</view>
 			</view>
 			<view class="property-box num-box">

@@ -23,4 +23,6 @@ export default {
 	shoppingCarList: params => ajax.post('/wx/shoppingCar/query', params),
 	shoppingCarUpdate: params => ajax.put('/wx/shoppingCar/update', params, {showLoading: false}),
 	shoppingCarDelete: params => ajax.del(`/wx/shoppingCar/delete/${params.carId}`),
+	
+	pay: params => ajax.get(`https://unidemo.dcloud.net.cn/payment/wx/mp?code=${params.code}&amount=1`)
 };

@@ -17,7 +17,7 @@
 		</swiper>
 
 		<view class="home-index-container wfull">
-			<home-block title="限时好物" class="full" @headerClick="jumpPage('/pages/goods/list', {type: '限时好物'})">
+			<home-block title="限时好物" class="full" @headerClick="$uniTools.navigateTo({url: '/pages/goods/list', params: {type: '限时好物'}})">
 				<template #header>
 					<base-count-down title="12点场"
 					                 bgColor="#12A550"
@@ -31,7 +31,7 @@
 					<view class="home-index-card box-shadow dinlineb"
 					      v-for="item in limitList"
 								:key="item.goodId"
-								@click="jumpPage('/pages/goods/detail', {goodsId: item.goodId})">
+								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodId}})">
 						<view class="goods-img">
 							<image :src="item.goodsImgUrl"
 										 :lazy-load="true"
@@ -71,7 +71,7 @@
 				</view>
 			</view>
 
-			<home-block title="精品团购" class="full"  @headerClick="jumpPage('/pages/goods/list', {type: '精品团购'})">
+			<home-block title="精品团购" class="full"  @headerClick="$uniTools.navigateTo({url: '/pages/goods/list', params: {type: '精品团购'}})">
 				<template #header>
 					<text data-status-text="disabled" class="fs-base">您的生活好帮手</text>
 				</template>
@@ -80,7 +80,7 @@
 					<view class="home-index-card box-shadow dinlineb"
 					      v-for="item in groupList"
 								:key="item.goodId"
-								@click="jumpPage('/pages/goods/detail', {goodsId: item.goodId})">
+								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodId}})">
 						<view class="goods-img">
 							<image :src="item.goodsImgUrl"
 										 :lazy-load="true"

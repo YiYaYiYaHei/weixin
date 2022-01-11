@@ -41,7 +41,7 @@
 				<view class="check-all hfull" @click="checkAllEvt"><image class="checkbox vm" :src="require(`@/static/images/shoppingCard/${checkAll ? 'checked' : 'check'}.png`)"></text>全选</view>
 				<view class="box">
 					<view class="total">合计：<text>￥{{checkedList.priceTotal.toFixed(2)}}</text></view>
-					<button type="warn" :disabled="!checkedList.goodsNum">去结算({{checkedList.goodsNum}})</button>
+					<button type="warn" :disabled="!checkedList.goodsNum" @click="buyEvt">去结算({{checkedList.goodsNum}})</button>
 				</view>
 			</view>
 		</view>
@@ -54,14 +54,14 @@
 </template>
 
 <script>
-import list from '@/mixins/list.js';
+import mixins from '@/mixins/index.js';
 import {updateShoppingCar, getShoppingCarNum} from '@/mixins/partMinxins.js';
 import GoodsProperty from '../goods/comp/GoodsProperty.vue';
 import AddCar from '../goods/comp/AddCar.vue';
 
 export default {
 	components: {GoodsProperty, AddCar},
-	mixins: [list, updateShoppingCar, getShoppingCarNum],
+	mixins: [mixins.list, updateShoppingCar, getShoppingCarNum, mixins.pay],
 	data() {
 		return {
 			goodsPropertyData: {
@@ -82,7 +82,7 @@ export default {
 				goodsNum: 0,
 				list: []
 			}
-		}
+		};
 	},
 	watch: {
 		'checkedList.list': {
@@ -117,7 +117,7 @@ export default {
 					size: ['155/80A/S', '160/84A/M', '165/88A/L'],
 					priceInt: (it.goodsPrice + '').split('.')[0],
 					priceFloat: (it.goodsPrice + '').split('.')[1] || '00'
-				}
+				};
 			});
 		},
 		// 商品勾选
@@ -148,7 +148,7 @@ export default {
 				goodsNum: this.userChooseData.num,
 				goodsSize: this.userChooseData.size,
 				goodsColor: this.userChooseData.color,
-			}
+			};
 			this.updateShoppingCarEvt(params, () => {
 				this.goodsPropertyData.nodeId = 0;
 				this.saveListScrollPos('carId', this.goodsPropertyData.carId, this.setListDataProperty);
@@ -185,9 +185,14 @@ export default {
 			this.checkAll = !this.checkAll;
 			this.listData.map(it => it.check = this.checkAll);
 			this.checkedList.list = this.listData.filter(it => it.check);
+		},
+		async buyEvt() {
+			console.log(this.checkedList);
+			this.getProvider();
+			await this.$apis.login.pay({code: JSON.parse(uni.getStorageSync('userInfo') || '{}').code});
 		}
 	}
-}
+};
 </script>
 
 <style lang="scss" scoped>
