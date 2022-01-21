@@ -19,7 +19,7 @@
 								<!-- 商品属性 -->
 								<view class="list-item-body-property" @click="popupEvt(item)">
 									<text class="text ellipsis">{{item.goodsSize}}，{{item.goodsColor}}</text>
-									<image class="icon" src="../../static/images/shoppingCard/bottom.png">
+									<text class="iconfont icon-down icon"></text>
 								</view>
 								<view class="list-item-body-note dflex">
 									<view>
@@ -245,6 +245,9 @@ scroll-view {
 		background-color: $uni-bg-color-hover;
 		line-height: 32rpx;
 		vertical-align: middle;
+		&.icon-down {
+			line-height: 22px;
+		}
 	}
 	.text {
 		max-width: calc(100% - 40rpx);

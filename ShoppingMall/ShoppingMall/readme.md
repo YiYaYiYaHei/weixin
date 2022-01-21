@@ -71,6 +71,10 @@
 
 ```
 # 踩坑记录
+> rpx、upx、px单位
+1. rpx、upx、px根据设计稿的宽度来，默认750，若非750,可以在 “ HbuilderX -> 工具 -> 设置 ” 中修改，默认 1px = 1rpx; 计算公式：1rpx = npx (n为你输入的数字)
+---
+
 > 服务器获取openid、sessionKey
 1. 注意mainfest.json -> mp-weixin：appid 要 和后台保持一致，否则会报40029（code无效）。
 ---
@@ -138,3 +142,7 @@
 
 > switchTab
 1. uni.switchTab({url: '/pages/home/index'}); 跳转后无法初始化页面: [uni-app开发小程序-使用uni.switchTab跳转后页面不刷新的问题](https://www.cnblogs.com/cap-rq/p/11120438.html)。
+---
+
+> iconfont
+1. 按官网步骤使用uni-icons获取阿里图标，显示不出来，因此按阿里图标示例使用即可<text class="iconfont icon-down"></text>

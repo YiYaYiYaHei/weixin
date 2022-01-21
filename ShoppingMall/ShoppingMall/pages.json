@@ -100,6 +100,12 @@
 			"navigationBarTitleText": "我的",
 			"navigationStyle": "custom"
 		}
+	}, {
+		"path": "pages/my/tpl/editAddress",
+		"style": {
+			"navigationBarTitleText": "我的",
+			"navigationStyle": "custom"
+		}
 	}],
 	// 小程序分包
 	"subPackages": [{
@@ -182,6 +188,10 @@
 		{
 			"name": "shoppingCar",
 			"path": "pages/shoppingCard/index"
+		},
+		{
+			"name": "my",
+			"path": "pages/my/index"
 		}
 		]
 	}

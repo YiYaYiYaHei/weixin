@@ -104,7 +104,7 @@
 
 <script>
 import common from '@/mixins/common.js';
-import HomeBlock from './comp/homeBlock.vue'
+import HomeBlock from './comp/homeBlock.vue';
 export default {
   mixins: [common],
   components: {
@@ -121,14 +121,13 @@ export default {
       targetDate: '',
       limitList: [],
       groupList: []
-    }
+    };
   },
   onLoad(params) {
     // 页面加载--获取路由参数
     const date = new Date();
     const [YYYY, MM, DD] = [date.getFullYear(), date.getMonth() + 1, date.getDate()];
     this.targetDate = `${YYYY}-${MM}-${DD} 23:59:59`;
-
     this.getLimitList();
     this.getGroupList();
   },
@@ -161,7 +160,7 @@ export default {
       this.$uniTools.navigateTo({url: '/pages/goods/list', params: {type}});
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

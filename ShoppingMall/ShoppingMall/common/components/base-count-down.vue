@@ -2,10 +2,10 @@
 	<view class="dinlineb h-i fs0 base-count-down-container">
 		<text v-if="title" class="fs-base base-count-down-title">{{title}}</text>
 		<uni-countdown class="dinlineb fs-base"
-									 :day="day" 
-		               :hour="hour" 
-									 :minute="minute" 
-									 :second="second" 
+									 :day="day"
+		               :hour="hour"
+									 :minute="minute"
+									 :second="second"
 									 :backgroundColor="bgColor"
 									 :color="color"
 									 :splitorColor="splitorColor"
@@ -71,7 +71,7 @@
 				hour: 0,
 				minute: 0,
 				second: 0
-			}
+			};
 		},
 		watch: {
 			targetDate: function(newVal) {
@@ -93,7 +93,7 @@
 				}
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss" scoped>

@@ -2,10 +2,10 @@
 	<view class="full fs0 pr base-header-layout-container">
 		<!-- 状态栏占位 -->
 		<view class="uni-custom"></view>
-		
+
 		<view class="uni-custom-content">
 			<!-- 头部 -->
-			<view class="wfull base-header-container" 
+			<view class="wfull base-header-container"
 			     :style="{'bottom': `calc(100% - ${capsuleSize.bottom + 10}px)`}"
 					 :class="{'uni-padding-wrap': hasDrawer}">
 				<view class="base-header-content-container full">
@@ -16,7 +16,7 @@
 					<slot name="header"></slot>
 				</view>
 			</view>
-			
+
 			<!-- 内容 -->
 			<view class="wfull base-content-container" :style="{'top': `${capsuleSize.bottom + 10}px`, 'height': `calc(100% - ${capsuleSize.bottom + 10}px)`}">
 				<template v-if="hasSubHeader">
@@ -24,13 +24,13 @@
 						<slot name="subHeader"></slot>
 					</view>
 				</template>
-				
+
 				<view class="wfull base-content-scroll-box" :style="{'height': hasSubHeader ? `calc(100% - ${capsuleSize.bottom + 10}px)` : '100%'}">
 					<slot></slot>
 				</view>
 			</view>
 		</view>
-		
+
 		<uni-drawer ref="drawer" mode="left">
 			<text v-for="item in barsList" :key="item.url" @click="navigatorEvt(item)" class="dblock drawer-item">{{item.label}}</text>
 		</uni-drawer>
@@ -41,7 +41,7 @@
 	/**
 	 * @description 导航栏页面布局（page.json -> "navigationStyle": "custom"）
 	 * @param {Boolean} hasDrawer - 是否有drawer
-	 * @param {Boolean} hasSubHeader - 是否有固定的副页头（类似淘宝的tab列--商品、详情、评论、推荐）
+	 * @param {Boolean} hasSubHeader - 是否有固定的副页头（类似淘宝的商品详情滚动到一定位置出现的tab列--商品、详情、评论、推荐）
 	 * @param {String} title - 页面标题
 	 * 使用hasSubHeader时，注意给.base-content-scroll-box设置margin-top，margin-top值为base-content-pos-box的高
 	 * @example  <base-header-layout><view>页面内容</view></base-header-layout>
@@ -75,7 +75,7 @@
 					{label: 'uniForm', url: '/subPackages/otherPages/pages/uniFormTest'},
 					{label: '新手引导页', url: '/subPackages/otherPages/pages/guide'}
 				]
-			}
+			};
 		},
 		created() {
 			// 获取右上角胶囊尺寸
@@ -86,10 +86,10 @@
 				this.$refs.drawer.close();
 				setTimeout(() => {
 					this.$uniTools.navigateTo({url: item.url});
-				})
+				});
 			}
 		}
-	}
+	};
 </script>
 
 <style lang="scss" scoped>
@@ -122,7 +122,7 @@
 		left: 0;
 		z-index: 3;
 	}
-	
+
 	// drawer样式---start---
 	.drawer-item {
 		@include line-height(72rpx);

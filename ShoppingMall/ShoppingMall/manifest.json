@@ -17,7 +17,9 @@
         },
         "modules" : {
             "Payment" : {},
-            "OAuth" : {}
+            "OAuth" : {},
+            "Bluetooth" : {},
+            "Fingerprint" : {}
         },
         /* 模块配置 */
         "distribute" : {
@@ -38,6 +40,7 @@
                     "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
                     "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.USE_FINGERPRINT\"/>",
                     "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
                     "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
                     "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
@@ -66,7 +69,8 @@
                 },
                 "push" : {},
                 "share" : {},
-                "ad" : {}
+                "ad" : {},
+                "geolocation" : {}
             }
         }
     },

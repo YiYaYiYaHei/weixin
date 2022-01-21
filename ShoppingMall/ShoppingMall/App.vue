@@ -13,6 +13,8 @@ export default {
 </script>
 
 <style lang="scss">
+// 引入iconfont
+@import '@/static/iconfont/iconfont.css';
 // 每个页面公共css
 @import './styles/uni.scss';
 // 通用class名
