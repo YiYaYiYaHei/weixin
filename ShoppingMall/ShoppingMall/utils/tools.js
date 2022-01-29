@@ -153,9 +153,8 @@ const formatByteSize = (byteSize) => {
  * @return {string} 格式化后的时间
  */
 const formatDate = (type = 'YYYY-MM-DD hh:mm:ss', val, granularity = 1) => {
-	val = val || Date.now();
-  const _val = isNaN(val) ? val : val * 1;
-  const date = new Date(_val) === 'Invalid Date' ? Date.now() : new Date(_val);
+  const _val = /^\d+$/.test(val) ? val * 1 : val;
+  const date = !_val || (new Date(_val) === 'Invalid Date') ? new Date() : new Date(_val);
   const YYYY = date.getFullYear() + '';
   const m = date.getMonth() + 1;
   const MM = m > 9 ? m + '' : '0' + m;
@@ -280,7 +279,7 @@ const dataIsEmpty = (data) => {
  * @param {boolean} [isMustSpecialChar = true] - 是否必须包含特殊字符
  * @return {boolean}
  */
-const isValidPassword = (pwd, isMustSpecialChar = true) => {
+const isValidPwd = (pwd, isMustSpecialChar = true) => {
   let count = 0;
   // 判断密码长度是8-20位
   if (pwd.length >= 8 && pwd.length <= 20) ++count;
@@ -299,7 +298,7 @@ const isValidPassword = (pwd, isMustSpecialChar = true) => {
   // 判断密码是否包含特殊字符
   // eslint-disable-next-line
   if (/[~@#%\+\-=\/\(_\)\*\&\<\>\[\"\;\'\|\$\^\?\!.\{\}\`]+/.test(pwd)) ++count;
-
+	console.log(count, pwd);
   return count === 5;
 };
 
@@ -309,8 +308,8 @@ const isValidPassword = (pwd, isMustSpecialChar = true) => {
  * @return {boolean}
  */
 const isPhone = (phone) => {
-  const reg = /^1[3|4|5|8][0-9]\d{8}$/;
-  return reg.test(phone);
+  const reg = /^(?:(?:\+|00)86)?1[3-9]\d{9}$/;
+  return isNaN(phone) ? false : reg.test(Number(phone));
 };
 
 /**
@@ -389,7 +388,7 @@ export default {
 	getStringLength,
 	getDataType,
 	dataIsEmpty,
-	isValidPassword,
+	isValidPwd,
 	isEnglish,
 	isChinese,
 	isPhone,

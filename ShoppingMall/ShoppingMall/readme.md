@@ -92,6 +92,9 @@
 2. 使用uni-easyinput 和 uni-data-checkbox 等关联组件，只需绑定 v-model，无需其他操作。
 3. 使用原生 input、checkbox 或三方组件等，需要给组件绑定 binddata 方法才能触发表单校验。
 4. validateFunction自定义校验规则：此时设置rules无效，需要在onReady生命周期调用组件的setRules方法绑定验证规则。
+5. 如果uni-forms中设置了rules，且uni-easyinput想要做输入校验，建议去除uni-forms中的rules(写了rules会导致只有第一次输入的时候校验了)。
+6. uni-easyinput输入校验的value始终获取的是上次的输入值，所以如果要校验本次的输入值，建议从自定义校验规则的data中直接获取。 例如：const key = JSON.parse(rule.label || '[]')[0]; data[key].length < 11
+7. 【官网解释】如果需要使用 validateFunction 自定义校验规则,则不能采用 uni-forms 的 rules 属性来配置校验规则，这时候需要通过ref，在onReady生命周期调用组件的setRules方法绑定验证规则 无法通过props传递变量，是因为微信小程序会过滤掉对象中的方法，导致自定义验证规则无效。
 ---
 
 > 状态栏、胶囊

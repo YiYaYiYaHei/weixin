@@ -163,6 +163,8 @@
 				<!-- 商品介绍结束 -->
 			</view>
 		</scroll-view>
+
+		<!-- 底部按钮开始 -->
 		<view class="footer dflex">
 			<view class="hfull vm tc" v-for="item in footerBtn" :key="item.type" @click="footerOperatorEvt(item)">
 				<image :src="item.img" class="vm"></image>
@@ -171,7 +173,7 @@
 			</view>
 			<add-car class="footet-btn" ref="addCar" @addCarEvt="goodsPropertyData.nodeId=$tools.getTimeStamp();" @addCarSuccessEvt="goodsPropertyData.nodeId=0"></add-car>
 		</view>
-
+		<!-- 底部按钮结束 -->
 
 		<!-- 家庭清单 -->
 		<base-popup-dialog :nodeId="familyListData.nodeId"
@@ -285,7 +287,7 @@ export default {
       ],
       // 购物车数量
       carNum: 0
-    }
+    };
   },
   onLoad(params) {
     this.capsuleSize = uni.getMenuButtonBoundingClientRect();
@@ -394,7 +396,7 @@ export default {
           'https://img.alicdn.com/imgextra/i1/746251873/O1CN010hrRQ31PhsVluV5tC_!!746251873.jpg',
           'https://img.alicdn.com/imgextra/i2/746251873/O1CN012iwLpR1PhsVmtZ0mw_!!746251873.jpg',
           'https://img.alicdn.com/tfs/TB1.CUdsY9YBuNjy0FgXXcxcXXa-1572-394.png'
-        ]
+        ];
         this.userChooseData.color = this.goodsDetailData.propertyData.color[0] || '';
         this.userChooseData.size = this.goodsDetailData.propertyData.size[0] || '';
       } else {
@@ -432,7 +434,7 @@ export default {
         goodsSize: this.userChooseData.size,
         goodsColor: this.userChooseData.color,
         goodsNum: this.userChooseData.num * 1
-      }
+      };
       this.$refs.popupAddCar.shoppingCardEvt(params);
     },
     addCarSuccessEvt() {
@@ -457,7 +459,7 @@ export default {
             success: (e) => {
               // 手动调用购物车页面的初始化查询 - 解决switchTab切换tabBar后，页面不会初始化
               var page = getCurrentPages().pop();
-              if (page == undefined || page == null) return;
+              if (!page) return;
               page.onLoad();
             }
           });
@@ -465,7 +467,7 @@ export default {
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

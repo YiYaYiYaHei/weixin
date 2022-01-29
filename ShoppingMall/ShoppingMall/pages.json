@@ -106,6 +106,12 @@
 			"navigationBarTitleText": "我的",
 			"navigationStyle": "custom"
 		}
+	}, {
+		"path": "pages/my/tpl/address",
+		"style": {
+			"navigationBarTitleText": "我的",
+			"navigationStyle": "custom"
+		}
 	}],
 	// 小程序分包
 	"subPackages": [{
@@ -192,6 +198,14 @@
 		{
 			"name": "my",
 			"path": "pages/my/index"
+		},
+		{
+			"name": "editAddress",
+			"path": "pages/my/tpl/editAddress"
+		},
+		{
+			"name": "address",
+			"path": "pages/my/tpl/address"
 		}
 		]
 	}

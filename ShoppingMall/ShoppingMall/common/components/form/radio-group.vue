@@ -1,27 +1,27 @@
 <template>
-	<view class="base-form-radio-group-container">
+	<view class="base-form-radio-group-container hfull">
 		<text class="base-form-radio-group-title dinlineb wfull" v-if="!!title">{{title}}</text>
-		
+
 		<template v-if="isObject">
 			<!-- 对象形式 -->
-			<radio-group class="base-form-radio-group-box">
+			<radio-group class="base-form-radio-group-box hfull">
 				<label class="radio-box uni-list-cell-pd" v-for="(item, index) in options" :key="item[valueKey]" @click="getItem(item)">
 					<view><radio :value="item[valueKey]" :checked="item[valueKey] === newVal"  :style="'transform:scale(' + scale + ')'" :disabled="item.disabled"/></view>
 					<view class="label">{{ item[label] }}</view>
 				</label>
 			</radio-group>
 		</template>
-		
+
 		<template v-else>
 			<!-- 字符串形式 -->
-			<radio-group class="base-form-radio-group-box">
+			<radio-group class="base-form-radio-group-box hfull">
 				<label class="radio-box uni-list-cell-pd" v-for="(item, index) in options" :key="item" @click="getItem(item)">
-					<view><radio :value="item" :checked="item === newVal"  :style="'transform:scale(' + scale + ')'" :disabled="item.disabled"/></view>
-					<view class="label">{{ item }}</view>
+					<radio :value="item" :checked="item === newVal"  :style="'transform:scale(' + scale + ')'" :disabled="item.disabled"/>
+					<text class="label">{{ item }}</text>
 				</label>
 			</radio-group>
 		</template>
-		
+
 	</view>
 </template>
 
@@ -71,7 +71,7 @@ export default {
 	data() {
 		return {
 			newVal: this.value
-		}
+		};
 	},
 	methods: {
 		getItem(item) {
@@ -83,21 +83,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-	.base-form-radio-group-title {
+.base-form-radio-group-title {
+	font-size: $uni-font-size-sm;
+	color: $uni-text-color-black;
+	font-weight: 600;
+}
+.base-form-radio-group-box {
+	@include flex(row, null, center);
+	flex-wrap: wrap;
+}
+.radio-box {
+	margin-right: 20px;
+	.label {
+		width: calc(100% -60rpx);
+		word-wrap: break-word;
 		font-size: $uni-font-size-sm;
-		color: $uni-text-color-black;
-		font-weight: 600;
 	}
-	.radio-box {
-		@include border(bottom, 1px, $uni-bg-color-grey);
-		@include flex(row, null, center);
-		&:nth-last-of-type(1) {
-			border-bottom: none;
-		}
-		.label {
-			width: calc(100% -60rpx);
-			word-wrap: break-word;
-			font-size: $uni-font-size-sm;
-		}
-	}
+}
 </style>

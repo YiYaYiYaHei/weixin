@@ -142,8 +142,7 @@ const sendRequest = async (requestConfig) => {
 		uniTools.showToast({title: MESSAGE.PERMISSION_DENIED}, () => {
 			uni.clearStorageSync();
 			store.commit('resetUserInfo');
-			uniTools.navigateTo({url: '/pages/user/login'});
-			return result;
+			uniTools.navigateTo({url: '/pages/login/login'});
 		});
 	}
 	if (result.status >= 500 && result.status !== 502) result.message = result.message || MESSAGE.NETWORK_ERR;

@@ -291,6 +291,7 @@
 }
 // 商品详情样式---end---
 
+// 详情底部按钮样式---start---
 .footer {
 	position: fixed;
 	left: 0;
@@ -326,3 +327,17 @@
 		width: 60%;
 	}
 }
+// 详情底部按钮样式---end---
+
+// 送至样式---start---
+/deep/.radio-box {
+	display: block;
+	width: 100%;
+	@include line-height(60px);
+	@include border(bottom, 1px, $uni-bg-color-grey);
+	width: 100%;
+	&:nth-last-of-type(1) {
+		border-bottom: none;
+	}
+}
+// 送至样式---end---

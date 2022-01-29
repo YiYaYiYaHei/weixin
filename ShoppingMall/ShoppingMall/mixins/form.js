@@ -1,12 +1,12 @@
 /*********************************************************************
  * 表单方法
  *********************************************************************/
- 
+
 export default {
 	data() {
 		return {
-			
-		}
+
+		};
 	},
 	computed: {},
 	methods: {
@@ -14,6 +14,7 @@ export default {
 		 * @description 表单验证
 		 */
 		submitForm(successCb, formName = 'form') {
+			if (!this.$refs[formName]) return false;
 			this.$refs[formName].validate().then(res => {
 				if (typeof successCb === 'function') successCb();
 			}).catch(err => {
@@ -29,9 +30,9 @@ export default {
 			  if (typeof successCb === 'function') successCb();
 			}).catch((err)=>{
 			  return false;
-			})
+			});
 		},
-		/** 
+		/**
 		 * @description 移除表单校验结果
 		 * @param {String|Array} validateField - 为空，默认移除所有
 		 * @param {Object} formRule - 表单校验规则
@@ -41,7 +42,7 @@ export default {
 			validateField ? this.$refs[formName].clearValidate(validateField) : this.$refs[formName].clearValidate();
 			setTimeout(() => {
 				this.$refs[formName].setRules(formRule);
-			})
+			});
 		}
 	}
-}
+};

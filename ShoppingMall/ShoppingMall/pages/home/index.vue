@@ -30,8 +30,8 @@
 				<scroll-view scroll-x="true" class="home-index-card-container">
 					<view class="home-index-card box-shadow dinlineb"
 					      v-for="item in limitList"
-								:key="item.goodId"
-								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodId}})">
+								:key="item.goodsId"
+								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
 						<view class="goods-img">
 							<image :src="item.goodsImgUrl"
 										 :lazy-load="true"
@@ -79,8 +79,8 @@
 				<scroll-view scroll-x="true" class="home-index-card-container">
 					<view class="home-index-card box-shadow dinlineb"
 					      v-for="item in groupList"
-								:key="item.goodId"
-								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodId}})">
+								:key="item.goodsId"
+								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
 						<view class="goods-img">
 							<image :src="item.goodsImgUrl"
 										 :lazy-load="true"

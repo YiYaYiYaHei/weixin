@@ -16,7 +16,7 @@ export const getShoppingCarNum = {
 			if (result.status === 200) {
 				num = result.data || 0;
 			} else {
-				this.$uniTools.showToast({title: '购物车数量获取失败'});
+				this.$uniTools.showToast({title: result.message || '购物车数量获取失败'});
 			}
 			return num;
 		},
@@ -49,7 +49,7 @@ export const updateShoppingCar = {
 				// 设置购物车数量
 				this.shoppingCarNum();
 			} else {
-				this.$uniTools.showToast({title: '修改失败'});
+				this.$uniTools.showToast({title: result.message || '修改失败'});
 			}
 			return isSuccess;
 		}

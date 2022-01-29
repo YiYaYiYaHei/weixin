@@ -11,6 +11,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-car:before {
+  content: "\e624";
+}
+
 .icon-down:before {
   content: "\e601";
 }

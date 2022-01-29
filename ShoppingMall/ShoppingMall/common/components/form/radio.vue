@@ -9,7 +9,7 @@
 /**
  * @description 单选按钮
  * @param {String} text - 展示文本
- * @param {Boolean} value - 值 required(v-model)
+ * @param {Boolean} value - 值，必填(获取的是v-model绑定的值)
  * @param {Boolean} disabled - 是否禁用
  * @param {String} color - 选中的颜色
  * @param {String | Number} scale - 单选按钮缩放大小 0.1-1
@@ -40,8 +40,9 @@ export default {
 	},
 	data() {
 		return {
-			checkedValue: this.value,  // this.value获取的是v-model的值
-		}
+			// this.value获取的是v-model的值
+			checkedValue: this.value
+		};
 	},
 	methods: {
 		clickRadio() {
@@ -49,7 +50,7 @@ export default {
 			this.$emit('input', this.checkedValue);
 		}
 	}
-}
+};
 </script>
 
 <style lang="scss" scoped>

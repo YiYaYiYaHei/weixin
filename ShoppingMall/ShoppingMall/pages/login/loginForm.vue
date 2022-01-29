@@ -82,7 +82,7 @@ export default {
           rules: [{required: true, errorMessage: '请输入用户名'}]
         },
         password: {
-          rules: [{required: true, validateFunction: this.$validates.password, errorMessage: '请输入密码'}]
+          rules: [{required: true, field: '密码', validateFunction: this.$validates.password, errorMessage: '请输入密码'}]
         },
         phone: {
           rules: [{required: true, validateFunction: this.$validates.phone, errorMessage: '请输入手机号'}]
@@ -103,8 +103,7 @@ export default {
       if (this.formData.loginType === 'account_login') {
         return !this.formData.userName || !this.formData.password;
       }
-        return !this.formData.phone || !this.formData.verificationCode;
-
+      return !this.formData.phone || !this.formData.verificationCode;
     }
   },
   methods: {

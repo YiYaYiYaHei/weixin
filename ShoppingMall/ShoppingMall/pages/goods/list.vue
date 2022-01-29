@@ -30,18 +30,17 @@ import list from '../../mixins/list.js';
 export default {
 	mixins: [list],
 	data() {
-		return {}
+		return {};
 	},
 	onLoad(params) {
 		// 页面加载--获取路由参数
 		const navigationBarTitleText = params.type;
-		uni.setNavigationBarTitle({
-				title: navigationBarTitleText
-		});
+		// 设置导航栏标题
+		uni.setNavigationBarTitle({title: navigationBarTitleText});
 		this.requestListParams.requestApi = this.$apis.login.homeGetGoodsList;
 		this.getList();
 	},
 	methods: {
 	}
-}
+};
 </script>
