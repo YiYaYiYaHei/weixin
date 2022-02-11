@@ -6,6 +6,7 @@ import Request from '@/plugins/luch-request/luch-request/index.js';
 import * as UrlConfig from '@/apis/url.config.js';
 import store from '@/store/index.js';
 import uniTools from './uniTools.js';
+import Tools from './tools.js';
 
 const request = new Request();
 const TIME_OUT = 20 * 1000;
@@ -143,7 +144,7 @@ const sendRequest = async (requestConfig) => {
 		uniTools.showToast({title: MESSAGE.PERMISSION_DENIED}, () => {
 			uni.clearStorageSync();
 			store.commit('resetUserInfo');
-			uniTools.navigateTo({url: '/pages/login/login'});
+			uni.reLaunch({url: Tools.jumpRoute()});
 		});
 	}
 	if (result.status >= 500 && result.status !== 502) result.message = result.message || MESSAGE.NETWORK_ERR;

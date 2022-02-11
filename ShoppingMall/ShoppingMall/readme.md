@@ -115,12 +115,12 @@
 1. uni.createSelectorQuery().select('#box')无法获取子组件的dom，需要通过refs调用子组件的getDom方法。
 2. uni-app不能对节点进行增删改查操作，目前只能获取到位置信息。
 
->上拉加载
+> 上拉加载
 1. 可以设置页面上拉触底事件触发时距页面底部距离： pages.json -> onReachBottomDistance（默认50px）。
 2. 添加页面生命周期onReachBottom并手动调用this.reachBottomEvt();，在onLoad生命周期中，为this.requestListParams参数赋值并调用this.getList()。
 ---
 
->下拉刷新
+> 下拉刷新
 1. 设置允许下拉刷新：pages.json -> "enablePullDownRefresh": true。
 2. 添加页面生命周期onPullDownRefresh并手动调用this.refreshList('pullDownRefresh')。
 ---

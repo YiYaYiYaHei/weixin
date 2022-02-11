@@ -27,7 +27,7 @@
 							       autoplay
 										 loop
 										 class="full"
-										 @error="this.$uniTools.showModal({content: '轮播视频播放失败'})"
+										 @error="$uniTools.showModal({content: '轮播视频播放失败'})"
 										 play-btn-position="center"
 										 enable-play-gesture></video>
 						</swiper-item>

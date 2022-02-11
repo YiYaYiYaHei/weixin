@@ -15,10 +15,10 @@ export default {
 <style lang="scss">
 // 引入iconfont
 @import '@/static/iconfont/iconfont.css';
-// 每个页面公共css
-@import './styles/uni.scss';
-// 通用class名
+// 系统常用样式
 @import './styles/common.scss';
 // 重置uni组件部分样式
-@import  './styles/reset.scss';
+@import  './styles/resetUni.scss';
+// 重置标签样式
+@import './styles/reset.scss';
 </style>

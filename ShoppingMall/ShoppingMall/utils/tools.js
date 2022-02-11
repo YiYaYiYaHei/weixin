@@ -32,9 +32,15 @@ const getModules = (name) => {
 	}, {});
 };
 
-// 根据权限跳转首页
+// 根据 权限/平台 跳转首页
 const jumpRoute = (userRole) => {
-  return userRole === '管理员' ? '/system/user' : '/home';
+	// 根据平台类型，跳转首页
+	let homePage = '/pages/login/loginForm';
+	// #ifdef MP-WEIXIN
+	homePage = '/pages/login/login';
+	// #endif
+	
+  return userRole === '管理员' ? '/system/user' : homePage;
 };
 
 /**
@@ -298,7 +304,6 @@ const isValidPwd = (pwd, isMustSpecialChar = true) => {
   // 判断密码是否包含特殊字符
   // eslint-disable-next-line
   if (/[~@#%\+\-=\/\(_\)\*\&\<\>\[\"\;\'\|\$\^\?\!.\{\}\`]+/.test(pwd)) ++count;
-	console.log(count, pwd);
   return count === 5;
 };
 
@@ -367,7 +372,14 @@ const isIp = (str) => {
   }
 };
 
+// 获取时间戳
 const getTimeStamp = () => new Date().getTime();
+
+// 获取当前页面路由
+const getCurrentPageRoute = () => {
+	const routes = getCurrentPages();
+	return routes[routes.length - 1].route;
+}
 
 export {
 	getModules
@@ -394,5 +406,6 @@ export default {
 	isPhone,
 	isEmail,
 	isIp,
-	getTimeStamp
+	getTimeStamp,
+	getCurrentPageRoute
 };

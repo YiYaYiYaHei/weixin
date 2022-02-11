@@ -21,11 +21,9 @@ export default {
   methods: {
     // 初始化用户信息
     async initUserInfo() {
-			let loginUrl = '/pages/login/loginForm';
-			// #ifdef MP-WEIXIN
-			loginUrl = '/pages/login/login';
-			// #endif
-			console.log(loginUrl, this.token);
+			// 根据平台类型判断登录页
+			const loginUrl = this.$tools.jumpRoute();
+			
       // 如果有tonken,则更新用户信息
       if (this.token) {
         // 调用更新token接口,若有用户权限操作，更新完跳转至对应页面即可

@@ -1,6 +1,8 @@
 <template>
 	<view class="login-form-container full uni-padding-wrap">
-		<uni-forms ref="form" v-model="formData" class="login-form full" label-width=0>
+		<image class="head-portrait" src="../../static/images/user/login.jpeg" mode="aspectFill"></image>
+		
+		<uni-forms ref="form" v-model="formData" class="login-form" label-width=0>
 			<!-- 用户账号登录 -->
 			<template v-if="formData.loginType === 'account_login'" name="password" >
 				<uni-forms-item name="userName">
@@ -13,7 +15,7 @@
 					<view class="login-form-item wfull">
 						<uni-icons type="locked" class="login-form-item-icon"></uni-icons>
 						<input v-model="formData.password" type="text" :password="!showPwd" placeholder="请输入密码" class="uni-flex-item" @input="binddata('password', $event.detail.value, 'form')"/>
-						<uni-icons type="eye" class="login-form-item-icon img-icon-eye" @click.native="this.showPwd = !this.showPwd" :data-status-text="!!formData.password && showPwd ? '' : 'disabled'"></uni-icons>
+						<uni-icons type="eye" class="login-form-item-icon img-icon-eye" @click.native="showPwd = !showPwd" :data-status-text="!!formData.password && showPwd ? '' : 'disabled'"></uni-icons>
 					</view>
 				</uni-forms-item>
 			</template>
@@ -179,6 +181,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.head-portrait {
+	width: 200rpx;
+	height: 200rpx;
+	margin: 100rpx 0 50rpx 50%;
+	transform: translateX(-50%);
+	border-radius: 50%;
+}
 .login-form-container {
   background-color: $uni-bg-color;
   .login-form {
@@ -193,7 +202,7 @@ export default {
         padding-bottom: 0!important;
       }
       .login-form-item-icon {
-        font-size: $uni-font-size-icon;
+        font-size: $uni-font-size-icon!important;
         margin-right: 20rpx;
         color: $uni-text-color-placeholder-light;
         &.img-icon-eye {
@@ -207,13 +216,17 @@ export default {
 }
 .login-btn {
   @include flex(row, space-between, center);
+	margin-top: 10rpx;
 }
 button {
-  height: 44px;
+  @include line-height(44px);
   @include statusBox($uni-color-primary);
-  &[aria-disabled="true"] {
+	&[disabled]{
     background-color: $uni-color-primary-opcatity!important;
     border-color: $uni-color-primary-opcatity!important;
   }
+	&:last-of-type {
+		margin-top: 10rpx;
+	}
 }
 </style>

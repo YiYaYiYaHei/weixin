@@ -1,4 +1,4 @@
-// 系统公共样式
+// 系统常用公共样式
 
 // 字体样式
 .fs0 {
@@ -181,16 +181,6 @@
 }
 
 // 按钮
-button {
-	width: 100%;
-	@include line-height(36px);
-}
-button[type="success"] {
-	@include statusBox($uni-color-success);
-	&[aria-disabled="true"] {
-		@include statusBox(rgba(18, 165, 80, .6));
-	}
-}
 .btn-large {
 	width: 600rpx;
 	@include line-height(80rpx);

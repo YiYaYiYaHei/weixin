@@ -28,15 +28,9 @@
 				</template>
 
 				<scroll-view scroll-x="true" class="home-index-card-container">
-					<view class="home-index-card box-shadow dinlineb"
-					      v-for="item in limitList"
-								:key="item.goodsId"
-								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
+					<view class="home-index-card box-shadow dinlineb" v-for="item in limitList" :key="item.goodsId" @click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
 						<view class="goods-img">
-							<image :src="item.goodsImgUrl"
-										 :lazy-load="true"
-										 mode="widthFix"
-										 class="full"></image>
+							<image :src="item.goodsImgUrl" :lazy-load="true" mode="widthFix" class="full"></image>
 						</view>
 						<view class="goods-description">
 							<text class="goods-description-title wfull fs-base ellipsis">{{item.goodsDescription}}</text>
@@ -77,15 +71,9 @@
 				</template>
 
 				<scroll-view scroll-x="true" class="home-index-card-container">
-					<view class="home-index-card box-shadow dinlineb"
-					      v-for="item in groupList"
-								:key="item.goodsId"
-								@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
+					<view class="home-index-card box-shadow dinlineb" v-for="item in groupList"	:key="item.goodsId"	@click="$uniTools.navigateTo({url: '/pages/goods/detail', params: {goodsId: item.goodsId}})">
 						<view class="goods-img">
-							<image :src="item.goodsImgUrl"
-										 :lazy-load="true"
-										 mode="widthFix"
-										 class="full"></image>
+							<image :src="item.goodsImgUrl" :lazy-load="true" mode="widthFix" class="full"></image>
 						</view>
 						<view class="goods-description">
 							<view class="goods-description-group-price">

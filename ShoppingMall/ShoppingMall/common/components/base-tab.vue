@@ -51,7 +51,7 @@ export default {
       default: 'label'
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: ''
     },
     options: {
