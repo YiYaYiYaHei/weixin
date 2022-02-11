@@ -21,12 +21,17 @@ export default {
   methods: {
     // 初始化用户信息
     async initUserInfo() {
+			let loginUrl = '/pages/login/loginForm';
+			// #ifdef MP-WEIXIN
+			loginUrl = '/pages/login/login';
+			// #endif
+			console.log(loginUrl, this.token);
       // 如果有tonken,则更新用户信息
       if (this.token) {
         // 调用更新token接口,若有用户权限操作，更新完跳转至对应页面即可
         let loginInfo = JSON.parse(uni.getStorageSync('userInfo') || '{}');
         if (!loginInfo.openId) {
-          uni.reLaunch({url: '/pages/login/login'});
+          uni.reLaunch({url: loginUrl});
           return;
         }
         let result = await this.$apis.login.refreshToken({openId: loginInfo.openId});
@@ -39,7 +44,7 @@ export default {
         }
       } else {
         // reLaunch--关闭所有页面，打开到应用内的某个页面。
-        uni.reLaunch({url: '/pages/login/login'});
+        uni.reLaunch({url: loginUrl});
       }
     }
   }

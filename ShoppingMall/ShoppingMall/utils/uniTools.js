@@ -156,7 +156,7 @@ const navigateTo = (obj = {}, events = {}, successCb, errorCb) => {
 				(typeof successCb === 'function') && successCb(res);
 			},
 			fail: function(err) {
-				console.log('navigateTo接口异常，请联系管理员!', err);
+				console.log('navigateTo接口异常，请联系管理员!', JSON.stringify(err));
 				showToast({title: 'navigateTo接口异常，请联系管理员!'});
 				(typeof errorCb === 'function') && errorCb();
 			},
@@ -271,10 +271,10 @@ const setStorage = (key, value, seconds) => {
 			// 过期操作--删除缓存
 			uni.removeStorageSync(key);
 			return "";
-		} else {
+		}
 			// 未过期--返回值
 			return tmp[0];
-		}
+
 	} else if (key && value) {
 		// 设置带过期时间的缓存
 		var expire = timestamp + seconds;
@@ -419,4 +419,4 @@ export default {
 	previewImage,
 	jumpId,
 	pay
-}
+};

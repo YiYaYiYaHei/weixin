@@ -38,7 +38,7 @@
 
 			<view class="footer-btn dflex">
 				<!-- 全选 -->
-				<view class="check-all hfull" @click="checkAllEvt"><image class="checkbox vm" :src="require(`@/static/images/shoppingCard/${checkAll ? 'checked' : 'check'}.png`)"></text>全选</view>
+				<view class="check-all hfull" @click="checkAllEvt"><image class="checkbox vm" :src="require(`@/static/images/shoppingCard/${checkAll ? 'checked' : 'check'}.png`)"><text>全选</text></view>
 				<view class="box">
 					<view class="total">合计：<text>￥{{checkedList.priceTotal.toFixed(2)}}</text></view>
 					<button type="warn" :disabled="!checkedList.goodsNum" @click="buyEvt">去结算({{checkedList.goodsNum}})</button>
@@ -275,7 +275,7 @@ scroll-view {
 	height: 46px;
 	background-color: #fff;
 	line-height: 46px;
-	padding: 0 20px;
+	padding: 0 30rpx;
 	.check-all {
 		width: 70px;
 		@include flex(row, space-around, center);
@@ -292,6 +292,7 @@ scroll-view {
 			}
 		}
 		button {
+			width: 200rpx;
 			height: 32px;
 			line-height: 32px;
 			font-size: $uni-font-size-base!important;

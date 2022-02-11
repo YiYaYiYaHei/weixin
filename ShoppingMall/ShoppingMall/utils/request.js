@@ -32,7 +32,8 @@ request.interceptors.response.use((response) => {
 
 // 获取请求地址
 const getUrl = (url, urlPrefix = 'BASE_URL') => {
-	return !!url ? `${UrlConfig[urlPrefix]}${url}` : '';
+	if (!url || /^(http|https):/g.test(url)) return url;
+	return `${UrlConfig[urlPrefix]}${url}`;
 };
 
 // 根据header里的contenteType转换请求参数
@@ -74,7 +75,7 @@ const buildRequestConfig = (requestConfig) => {
 	 */
 	config.method = requestConfig.method;
 	// 请求接口地址
-	config.url = /^(http|https):/g.test(requestConfig.url) ? requestConfig.url : getUrl(requestConfig.url, requestConfig.urlPrefix);
+	config.url = getUrl(requestConfig.url, requestConfig.urlPrefix);
 	// 请求参数
 	if (config.method === 'UPLOAD') {
 		// 文件上传参数
@@ -151,7 +152,7 @@ const sendRequest = async (requestConfig) => {
 
 // 文件下载
 const downLoadEvt = (requestConfig, successCb, errorCb) => {
-	let url = /^(http|https):/g.test(requestConfig.url) ? requestConfig.url : getUrl(requestConfig.url, requestConfig.urlPrefix);
+	let url = getUrl(requestConfig.url, requestConfig.urlPrefix);
 	if (!!Object.keys(requestConfig.params).length) {
 		let str = '';
 		for (let key in requestConfig.params) {
@@ -180,10 +181,10 @@ const sendDownLoadReq = async (requestConfig) => {
 	if (requestConfig.successCb || requestConfig.errorCb) {
 		return downLoadEvt(requestConfig, requestConfig.successCb, requestConfig.errorCb);
 	}
-		const result = await new Promise((resolve, reject) => {
-			downLoadEvt(requestConfig, resolve, reject);
-		});
-		return result;
+	const result = await new Promise((resolve, reject) => {
+		downLoadEvt(requestConfig, resolve, reject);
+	});
+	return result;
 };
 
 /**

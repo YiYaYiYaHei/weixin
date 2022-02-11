@@ -66,7 +66,9 @@
 		data() {
 			return {
 				// 胶囊尺寸
-				capsuleSize: {},
+				capsuleSize: {
+					bottom: 0
+				},
 				barsList: [
 					{label: '弧形文字', url: '/subPackages/otherPages/pages/arcText'},
 					{label: '幸运大转盘', url: '/subPackages/otherPages/pages/choujiang'},
@@ -79,7 +81,10 @@
 		},
 		created() {
 			// 获取右上角胶囊尺寸
+			// #ifdef  MP
 			this.capsuleSize = uni.getMenuButtonBoundingClientRect();
+			// #endif
+			
 		},
 		methods: {
 			navigatorEvt(item) {

@@ -35,7 +35,7 @@ module.exports = app => {
       common.resSend({status: 201, message: '缺少参数classificationId'});
       return;
     }
-    let find_res = await dbFunc.findFunc('subClassification', {where: `classificationId=${params.classificationId}`}).catch(e => {
+    let find_res = await dbFunc.findFunc('subclassification', {where: `classificationId=${params.classificationId}`}).catch(e => {
       common.resSend(res, e);
       return;
     });

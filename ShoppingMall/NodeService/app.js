@@ -13,6 +13,8 @@ const express = require('express'),
   https = require('https'),
   fs = require('fs');
 
+const isHttps = false;
+
 // 服务端开启gzip支持
 var compression = require('compression');
 //尽量在其他中间件前使用compression
@@ -27,22 +29,26 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 /* 服务启动监听 */
-var privateCrt = fs.readFileSync(path.join(process.cwd(), 'cert/server.pem'), 'utf8');
-var privateKey = fs.readFileSync(path.join(process.cwd(), 'cert/server.key'), 'utf8');
-const HTTPS_OPTOIN = {
-  key: privateKey,
-  cert: privateCrt
-};
+let server = null;
 const SSL_PORT = 13666;
-const httpsServer = https.createServer(HTTPS_OPTOIN, app);
-httpsServer.listen(SSL_PORT, () => {
-  console.log(`HTTPS Server is running on: https://localhost:${SSL_PORT}`);
-});
-// ==================== http配置 start=======================
-/* const httpsServer = app.listen(port, function () {
-  console.log('customize system service starting on port ' + port);
-}); */
-// ==================== http配置 end =======================
+if (isHttps) {
+  // https配置
+  var privateCrt = fs.readFileSync(path.join(process.cwd(), 'cert/server.pem'), 'utf8');
+  var privateKey = fs.readFileSync(path.join(process.cwd(), 'cert/server.key'), 'utf8');
+  const HTTPS_OPTOIN = {
+    key: privateKey,
+    cert: privateCrt
+  };
+  server = https.createServer(HTTPS_OPTOIN, app);
+  server.listen(SSL_PORT, () => {
+    console.log(`HTTPS Server is running on: https://localhost:${SSL_PORT}`);
+  });
+} else {
+  // http配置
+  server = app.listen(port, function () {
+    console.log(`HTTP Server is running on: http://localhost:${SSL_PORT}`);
+  });
+}
 
 /* 设置CORS跨域 */
 app.all('*', function (req, res, next) {
@@ -79,7 +85,7 @@ weixinReq(app);
 vueCliReq(app);
 
 /* socket 接入 */
-socket(app, httpsServer);
+socket(app, server);
 
 /* 导出模块 */
 module.exports = app;

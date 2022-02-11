@@ -234,7 +234,10 @@ export default {
   mixins: [getShoppingCarNum],
   data() {
     return {
-      capsuleSize: {},
+      capsuleSize: {
+				bottom: 0,
+				leftValue: 8
+			},
       goodsId: null,
       tabList: ['商品', '详情'],
       showTabList: false,
@@ -290,8 +293,12 @@ export default {
     };
   },
   onLoad(params) {
+		// 小程序下获取胶囊尺寸
+		// #ifdef  MP 
     this.capsuleSize = uni.getMenuButtonBoundingClientRect();
     this.capsuleSize.leftValue = uni.getSystemInfoSync().windowWidth - this.capsuleSize.right;
+		// #endif 
+		
     // 页面加载--获取路由参数
     this.goodsId = (params || {goodsId: ''}).goodsId;
     this.getGoodsDetail();

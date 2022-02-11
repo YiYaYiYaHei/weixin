@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80025
 File Encoding         : 65001
 
-Date: 2022-01-10 09:53:28
+Date: 2022-02-10 15:09:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -128,7 +128,7 @@ CREATE TABLE `shoppingcar` (
 -- ----------------------------
 INSERT INTO `shoppingcar` VALUES ('16', '1', '59', '1', '绿色', '160/84A/M', '1641440494355', '1641462660779');
 INSERT INTO `shoppingcar` VALUES ('16', '1', '73', '3', '蓝色', '155/80A/S', '1641440906622', '1641545918969');
-INSERT INTO `shoppingcar` VALUES ('16', '4', '80', '1', '蓝色', '155/80A/S', '1641546851136', '1641546851136');
+INSERT INTO `shoppingcar` VALUES ('16', '4', '80', '3', '绿色', '155/80A/S', '1641546851136', '1641546851136');
 INSERT INTO `shoppingcar` VALUES ('16', '4', '81', '1', '蓝色', '160/84A/M', '1641546853451', '1641546853451');
 INSERT INTO `shoppingcar` VALUES ('16', '4', '82', '1', '蓝色', '165/88A/L', '1641546855575', '1641546855575');
 INSERT INTO `shoppingcar` VALUES ('16', '4', '83', '1', '绿色', '155/80A/S', '1641546859221', '1641546859221');
@@ -212,4 +212,4 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('h0g9qtqSgzrpF/r3QpDXVsjplWgrqFuHmBwPIPFKvT25sUnt2r3I2M8Sv40ZYmx7', '16', 'yggK9UWkvbD/UsZ+hwS1sg==', 'oz-FM46oLkyJ8H88Tf8EXtXowKy4', '1623396973755', '1641779350535', '微信用户', '未知', 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132');
+INSERT INTO `user` VALUES ('h0g9qtqSgzrpF/r3QpDXVg8xxG5T7b8zLnvLVfG6jd4aSG03WBRTYyCaQ9Hsb1W6', '16', 'yggK9UWkvbD/UsZ+hwS1sg==', 'oz-FM46oLkyJ8H88Tf8EXtXowKy4', '1623396973755', '1644474004366', '微信用户', '未知', 'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132');

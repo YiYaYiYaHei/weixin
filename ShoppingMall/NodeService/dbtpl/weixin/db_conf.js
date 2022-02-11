@@ -32,9 +32,9 @@ function transStr(data) {
 const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: 'Mengshuhui961117',
   port: '3306',
-  database: 'wx_ShoppingMall',
+  database: 'wx_shoppingmall',
   connectionLimit: 2, //连接池最多可以创建连接数
   queueLimit: 0 // 队伍中等待连接的最大数量，0为不限制。
 });

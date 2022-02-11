@@ -19,8 +19,10 @@ export default {
   mixins: [getShoppingCarNum],
   data() {
     return {
-      code: '',   // 微信临时登录凭证
-      userInfo: {},   // 微信用户基本信息
+			// 微信临时登录凭证
+      code: '',
+			// 微信用户基本信息
+      userInfo: {}
     }
   },
   onLoad(params) {
