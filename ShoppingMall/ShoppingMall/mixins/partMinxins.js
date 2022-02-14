@@ -36,6 +36,7 @@ export const getShoppingCarNum = {
 		}
 	}
 };
+
 // 修改购物车商品信息
 export const updateShoppingCar = {
 	methods: {

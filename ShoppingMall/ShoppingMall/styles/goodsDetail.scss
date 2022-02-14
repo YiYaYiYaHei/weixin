@@ -44,8 +44,6 @@
 	margin: 0 auto;
 }
 .goods-detail-header {
-	line-height: inherit;
-	@include pos(0, null, null, 0);
 	.header-icon {
 		display: inline-block;
 		width: 49%;

@@ -42,7 +42,7 @@
 	// pages 数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 	"pages": [{
 		"path": "pages/login/start",
-		"style": { 
+		"style": {
 			"navigationStyle": "custom"
 		}
 	}, {
@@ -59,30 +59,30 @@
 		}
 	}, {
 		"path": "pages/home/index",
-		"style": { 
+		"style": {
 			"navigationStyle": "custom"
 		}
 	}, {
 		"path": "pages/goods/list",
-		"style": { 
+		"style": {
 			"navigationBarTitleText": "限时好物",
 			"onReachBottomDistance": 50,   // 页面上拉触底事件触发时距页面底部距离
 			"enablePullDownRefresh": true  // 开启下拉刷新
 		}
 	}, {
 		"path": "pages/goods/detail",
-		"style": { 
+		"style": {
 			"navigationBarTitleText": "商品详情",
 			"navigationStyle": "custom"
 		}
 	}, {
 		"path": "pages/goods/priceReduceRemind",
-		"style": { 
+		"style": {
 			"navigationBarTitleText": "降价提醒"
 		}
 	}, {
 		"path": "pages/classification/index",
-		"style": { 
+		"style": {
 			"navigationBarTitleText": "分类",
 			"navigationStyle": "custom"
 		}

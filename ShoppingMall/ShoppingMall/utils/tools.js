@@ -39,7 +39,7 @@ const jumpRoute = (userRole) => {
 	// #ifdef MP-WEIXIN
 	homePage = '/pages/login/login';
 	// #endif
-	
+
   return userRole === '管理员' ? '/system/user' : homePage;
 };
 

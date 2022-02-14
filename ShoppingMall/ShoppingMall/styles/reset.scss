@@ -52,6 +52,18 @@ form {
 
 // 胶囊样式--宽、高、位置需使用行间样式设置
 .capsule-black-box {
+	width: 90px;
+	height: 32px;
+	@include pos(50%, null, null, 0);
+	// app端样式
+	/* #ifdef  APP-PLUS */
+	transform: translateY(-50%);
+	line-height: 32px;
+	/* #endif */
+	// 小程序样式
+	/* #ifdef  MP */
+	line-height: inherit;
+	/* #endif */
 	background: rgba(0, 0, 0, .2);
 	@include border(null, 1px, rgba(255, 255, 255, .25));
 	border-radius: 20px;
@@ -81,10 +93,12 @@ form {
 	width: 100%;
 	height: var(--status-bar-height);
 	@include statusBox($uni-color-success);
-	// @include pos(0, null, null, 0, fixed);
-	// z-index: 1;
+	@include pos(0, null, null, 0, fixed);
+	z-index: 1;
 }
 .uni-custom-content {
+	position: relative;
+	top: var(--status-bar-height);
 	width: 100%;
 	height: calc(100% - var(--status-bar-height));
 	// height: 100%;

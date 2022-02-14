@@ -4,7 +4,7 @@
 			<!-- 列表内容 -->
 			<slot></slot>
 		</template>
-		
+
 		<template v-if="!loadMoreData.otherStatus">
 			<!-- 加载更多 -->
 			<uni-load-more :status="loadMoreData.status"
@@ -51,56 +51,57 @@
  * 1. 设置允许下拉刷新：pages.json -> "enablePullDownRefresh": true
  * 2. 添加页面生命周期onPullDownRefresh并手动调用this.refreshList('pullDownRefresh');
  */
-	export default {
-		props: {
-			loadMoreData: {
-				type: Object,
-				default: () => {
-					return {
-						iconSize: 24,
-						status: 'more',
-						showIcon: true,
-						iconType: 'auto',
-						color: '#777777',
-						contentText: {
-							contentdown: "上拉显示更多",
-							contentrefresh: "正在加载...",
-							contentnomore: "没有更多数据了"
-						},
-						otherStatus: '',    // 其他状态：当otherStatus有值时，表示接口请求失败otherStatus=error/数据为空otherStatus=empty
-					}
-				}
-			},
-			emptyText: {
-				type: String,
-				default: '暂无内容哦~'
-			},
-		},
-		data() {
-			return {}
-		},
-		created() {
-			
-		},
-		methods: {
-			
-		}
-	}
+export default {
+  props: {
+    loadMoreData: {
+      type: Object,
+      default: () => {
+        return {
+          iconSize: 24,
+          status: 'more',
+          showIcon: true,
+          iconType: 'auto',
+          color: '#777777',
+          contentText: {
+            contentdown: "上拉显示更多",
+            contentrefresh: "正在加载...",
+            contentnomore: "没有更多数据了"
+          },
+          // 其他状态：当otherStatus有值时，表示接口请求失败otherStatus=error/数据为空otherStatus=empty
+          otherStatus: ''
+        }
+      }
+    },
+    emptyText: {
+      type: String,
+      default: '暂无内容哦~'
+    },
+  },
+  data() {
+    return {}
+  },
+  created() {
+
+  },
+  methods: {
+
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-	.load-more-error,
-	.load-more-empty {
-		padding: 30rpx 0;
-	}
-	.load-more {
-		@include pos(50%, null, null, 50%, fixed);
-		transform: translate(-50%, -50%);
-	}
-	.empty-img {
-		display: block;
-		width: 450rpx;
-		height: 200rpx;
-		margin: 0 auto;
-	}
+.load-more-error,
+.load-more-empty {
+  padding: 30rpx 0;
+}
+.load-more {
+  @include pos(50%, null, null, 50%, fixed);
+  transform: translate(-50%, -50%);
+}
+.empty-img {
+  display: block;
+  width: 450rpx;
+  height: 200rpx;
+  margin: 0 auto;
+}
 </style>

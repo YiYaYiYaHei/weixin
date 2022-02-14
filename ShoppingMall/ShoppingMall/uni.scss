@@ -332,7 +332,6 @@ $uni-font-size-icon-s: 34rpx;
   color: $color !important;
 }
 @mixin statusBox($bgColor) {
-  display: inline-block;
   background-color: $bgColor !important;
   color:white !important;
 }

@@ -5,11 +5,11 @@
 			<swiper-item>
 				<video src="https://vd3.bdstatic.com/mda-mfgyux07gfwgbmd7/fhd/cae_h264_nowatermark/1623971837068239381/mda-mfgyux07gfwgbmd7.mp4?v_from_s=gz_haokan_4469&auth_key=1623982150-0-0-f86dbd9bad11cd3f527f2df0082fc085&bcevod_channel=searchbox_feed&pd=1&pt=3&abtest="
 				       autoplay
-							 loop
-							 class="full"
-							 @error="this.$uniTools.showModal({content: '轮播视频播放失败'})"
-							 play-btn-position="center"
-							 enable-play-gesture></video>
+					   loop
+					   class="full"
+					   @error="this.$uniTools.showModal({content: '轮播视频播放失败'})"
+					   play-btn-position="center"
+					   enable-play-gesture></video>
 			</swiper-item>
 			<swiper-item v-for="(item, index) in bannerList" :key="index">
 				<image :src="item" class="full"></image>
@@ -21,10 +21,10 @@
 				<template #header>
 					<base-count-down title="12点场"
 					                 bgColor="#12A550"
-													 color="#fff"
-													 splitorColor="#12A550"
-													 :showDay="false"
-													 :targetDate="targetDate"></base-count-down>
+									 color="#fff"
+									 splitorColor="#12A550"
+									 :showDay="false"
+									 :targetDate="targetDate"></base-count-down>
 				</template>
 
 				<scroll-view scroll-x="true" class="home-index-card-container">

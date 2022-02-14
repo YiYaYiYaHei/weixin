@@ -13,7 +13,7 @@ export default {
 	methods: {
 		/**
 		 * @description 根据id，获取节点位置信息
-		 * @return {Array} [{bottom: 0, height: 0, id: '节点id', left: 0, message: '提示内容', right: 0, tooltipPos: '提示的位置top、left、right、bottom', top: 0, width: 0}]  
+		 * @return {Array} [{bottom: 0, height: 0, id: '节点id', left: 0, message: '提示内容', right: 0, tooltipPos: '提示的位置top、left、right、bottom', top: 0, width: 0}]
 		 */
 		async getExplainList(list = this.list) {
 			let temp = [];

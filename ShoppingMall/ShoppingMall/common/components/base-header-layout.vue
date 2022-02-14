@@ -4,10 +4,8 @@
 		<view class="uni-custom"></view>
 
 		<view class="uni-custom-content">
-			<!-- 头部 -->
-			<view class="wfull base-header-container"
-					  :style="{'bottom': `calc(100% - ${capsuleSize.bottom + 10}px)`}"
-						:class="{'uni-padding-wrap': hasDrawer}">
+			<!-- 头部 标题 -->
+			<view class="wfull base-header-container" :style="{'bottom': capsuleSize.headerBottom}" id="header">
 				<view class="base-header-content-container full">
 					<template v-if="hasDrawer">
 						<uni-icons type="bars" class="icon-lg" @click="this.$refs.drawer.open()"></uni-icons>
@@ -18,14 +16,16 @@
 			</view>
 
 			<!-- 内容 -->
-			<view class="wfull base-content-container" :style="{'top': `${capsuleSize.bottom + 10}px`, 'height': `calc(100% - ${capsuleSize.bottom + 10}px)`}">
+			<view class="wfull base-content-container" :style="{'padding-top': `${capsuleSize.headerReallyHeight}px`}">
+        <!-- 副标题 -->
 				<template v-if="hasSubHeader">
-					<view class="wfull base-content-pos-box" :style="{'top': `${capsuleSize.bottom + 10}px`}">
+					<view class="wfull base-content-pos-box" :style="{'top': `${capsuleSize.headerReallyBottom}px`}">
 						<slot name="subHeader"></slot>
 					</view>
 				</template>
 
-				<view class="wfull base-content-scroll-box" :style="{'height': hasSubHeader ? `calc(100% - ${capsuleSize.bottom + 10}px)` : '100%'}">
+        <!-- 内容 -->
+				<view class="wfull base-content-scroll-box" :style="{'height': hasSubHeader ? `calc(100% - ${capsuleSize.headerReallyHeight}px)` : '100%'}">
 					<slot></slot>
 				</view>
 			</view>
@@ -65,9 +65,14 @@ export default {
 	},
 	data() {
 		return {
-			// 胶囊尺寸
+			// 胶囊尺寸（小程序为胶囊尺寸，app为实际高度）
 			capsuleSize: {
-				bottom: 0
+				// 顶部导航bootom值（小程序为胶囊实际bottom值，app固定为auto）
+				headerBottom: 'auto',
+				// 顶部导航实际高度
+				headerReallyHeight: 0,
+				// 顶部导航实际bottom值
+				headerReallyBottom: 0
 			},
 			barsList: [
 				{label: '弧形文字', url: '/subPackages/otherPages/pages/arcText'},
@@ -79,16 +84,23 @@ export default {
 			]
 		};
 	},
-	created() {
+	mounted() {
 		// 获取右上角胶囊尺寸（小程序才有胶囊）
 		// #ifdef MP
-		this.capsuleSize = uni.getMenuButtonBoundingClientRect();
+		const capsuleSize = uni.getMenuButtonBoundingClientRect();
+		this.capsuleSize.headerBottom = `calc(100% - ${capsuleSize.bottom + 10}px)`;
 		// #endif
 
+		// 计算顶部导航实际高度
+		this.$nextTick(async () => {
+			const headerSize = await this.$uniTools.getDom(this, `#header`);
+			this.capsuleSize.headerReallyHeight = headerSize.data[0].height;
+			this.capsuleSize.headerReallyBottom = headerSize.data[0].bottom;
+		});
 	},
 	methods: {
 		navigatorEvt(item) {
-			this.$refs.drawer.close();
+			this.$refs.awer.close();
 			setTimeout(() => {
 				this.$uniTools.navigateTo({url: item.url});
 			});
@@ -103,6 +115,7 @@ export default {
 		@include statusBox($uni-color-success);
 		@include pos(var(--status-bar-height), 0, null, 0, fixed);
 		z-index: 2;
+		padding: 14px;
 		.base-header-content-container {
 			@include flex(row, null, center);
 			.base-header-title {
@@ -111,7 +124,8 @@ export default {
 		}
 	}
 	.base-content-container {
-		@include pos(null, 0, null, 0);
+		height: 100%;
+		min-height: 100%;
 		background: white;
 	}
 }

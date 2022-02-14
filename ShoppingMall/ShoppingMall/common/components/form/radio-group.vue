@@ -5,7 +5,7 @@
 		<template v-if="isObject">
 			<!-- 对象形式 -->
 			<radio-group class="base-form-radio-group-box hfull">
-				<label class="radio-box uni-list-cell-pd" v-for="(item, index) in options" :key="item[valueKey]" @click="getItem(item)">
+				<label class="radio-box uni-list-cell-pd" v-for="item in options" :key="item[valueKey]" @click="getItem(item)">
 					<view><radio :value="item[valueKey]" :checked="item[valueKey] === newVal"  :style="'transform:scale(' + scale + ')'" :disabled="item.disabled"/></view>
 					<view class="label">{{ item[label] }}</view>
 				</label>
@@ -15,7 +15,7 @@
 		<template v-else>
 			<!-- 字符串形式 -->
 			<radio-group class="base-form-radio-group-box hfull">
-				<label class="radio-box uni-list-cell-pd" v-for="(item, index) in options" :key="item" @click="getItem(item)">
+				<label class="radio-box uni-list-cell-pd" v-for="item in options" :key="item" @click="getItem(item)">
 					<radio :value="item" :checked="item === newVal"  :style="'transform:scale(' + scale + ')'" :disabled="item.disabled"/>
 					<text class="label">{{ item }}</text>
 				</label>
